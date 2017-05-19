@@ -15,6 +15,11 @@ class CreateDefinitionsTable extends Migration
     {
         Schema::create('definitions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('entry_id')->unsigned();
+            $table->string('text')->unique();
+            $table->integer('ups')->unsigned();
+            $table->integer('downs')->unsigned();
             $table->timestamps();
         });
     }
