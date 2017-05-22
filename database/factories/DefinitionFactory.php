@@ -19,6 +19,8 @@ $factory->define(App\Definition::class, function () use ($faker) {
 
     return [
         'text'     => $faker->text,
+        'user_id'  => $faker->randomNumber(1, false),
+        'entry_id'  => $faker->randomNumber(2, false),
         'ups'      => $faker->randomNumber(2, false),
         'downs'    => $faker->randomNumber(1, false),
     ];

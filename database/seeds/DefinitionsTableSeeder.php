@@ -11,6 +11,7 @@ class DefinitionsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Definition::class, 50)
+          ->create();
     }
 }

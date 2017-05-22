@@ -14,8 +14,10 @@ class UsersTableSeeder extends Seeder
         factory(App\User::class, 50)
           ->create()
           ->each(function ($u) {
-            $u->entries()
-              ->save( factory(App\Entry::class)->make());
+              for ($i = 1; $i <= rand ( 1 , 3 ); $i++) {
+                $u->entries()
+                  ->save( factory(App\Entry::class)->make());
+              }
           });
     }
 }
