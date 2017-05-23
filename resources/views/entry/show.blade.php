@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('pageTitle')
+{{__('show.pageTitlePrefix')}} {{$entry->text}} {{__('show.pageTitleSuffix')}} - 
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
