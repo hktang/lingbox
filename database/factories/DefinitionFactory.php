@@ -18,9 +18,12 @@ $faker = Faker\Factory::create('zh_CN');
 $factory->define(App\Definition::class, function () use ($faker) {
 
     return [
-        'text'     => $faker->text,
+        'text'     => $faker->country . $faker->state . 
+                      $faker->city . $faker->area . $faker->address . 
+                      '的' . $faker->lastName. $faker->firstNameMale . 
+                      "。例：" . $faker->text,
         'user_id'  => $faker->randomNumber(1, false),
-        'entry_id'  => $faker->randomNumber(2, false),
+        'entry_id'  => $faker->randomNumber(1, false),
         'ups'      => $faker->randomNumber(2, false),
         'downs'    => $faker->randomNumber(1, false),
     ];

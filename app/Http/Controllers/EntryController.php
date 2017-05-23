@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Entry;
 
 class EntryController extends Controller
 {
@@ -45,7 +46,7 @@ class EntryController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('entry.show', ['entry' => Entry::findOrFail($id)]);
     }
 
     /**

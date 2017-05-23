@@ -18,6 +18,7 @@ $faker = Faker\Factory::create('zh_CN');
 $factory->define(App\Entry::class, function () use ($faker) {
 
     return [
-    	'text'    => $faker->city . $faker->companyPrefix . $faker->companySuffix ,
+    	'text'    => $faker->city . $faker->country .
+                   $faker->companyPrefix . $faker->companySuffix ,
     ];
 });
