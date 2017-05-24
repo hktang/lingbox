@@ -19,4 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/entry/{id}', 'EntryController@show')->name('entry');
+Route::get('/add', 'EntryController@create')->name('addEntry');
+Route::get('/entry/{id}', 'EntryController@show')->name('showEntry');

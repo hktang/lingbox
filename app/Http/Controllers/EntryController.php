@@ -24,7 +24,7 @@ class EntryController extends Controller
      */
     public function create()
     {
-        //
+        return view('entry.add');
     }
 
     /**
@@ -35,7 +35,16 @@ class EntryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'text'        => 'required',
+        ]);
+        
+        $entryId = Entry::insertGetId([
+            'text'        => $request->input('text'),
+        ]);
+
+        $request->session()->flash('success', 'Entry added!');
+        return redirect()->route('entry.show', $entryId);
     }
 
     /**

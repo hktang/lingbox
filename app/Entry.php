@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entry extends Model
 {
+    
+    protected $fillable = ['text'];
+    
     /**
      * Get the definitions of the entry.
      */
