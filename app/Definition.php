@@ -18,6 +18,14 @@ class Definition extends Model
     }
     
     /**
+     * Get the user that owns the definition.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
      * Get the votes of the definition.
      */
     public function votes()

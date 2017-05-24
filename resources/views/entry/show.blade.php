@@ -16,14 +16,20 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 @if($entry)
-                    <div class="panel-heading">{{$entry->text}}</div>
+                    <div class="panel-heading">
+                      <h1>{{$entry->text}}</h1>
+                    </div>
 
                     <div class="panel-body">
-                        @foreach ($entry->definitions->sortByDesc('ups') as $definition)
+                        @foreach ($entry->definitions->sortByDesc('ups')->take(5) as $definition)
                         <div class="definition-single">
                           <p>{{$definition->text}}<p>
-                          <p>&#9786; {{$definition->votes->where('vote', '1')->count()}} | &#9785; {{$definition->votes->where('vote', '-1')->count()}}
+                          <p>
+                           &#9786; {{$definition->votes->where('vote', '1')->count()}} | 
+                           &#9785; {{$definition->votes->where('vote', '-1')->count()}} |
+                           {{$definition->user->name}}, {{$definition->created_at}}
                         </div>
+                        <hr />
                         @endforeach
                     </div>
                 @else

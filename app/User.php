@@ -35,4 +35,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Entry');
     }
+
+    /**
+     * Get the definitions created by the user.
+     */
+    public function definitions()
+    {
+        return $this->hasMany('App\Definition');
+    }
 }
