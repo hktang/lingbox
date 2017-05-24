@@ -16,7 +16,8 @@ class DefinitionsTableSeeder extends Seeder
           ->each(function ($d) {
             for ($i = 1; $i <= rand ( 1 , 50 ); $i++) {
               $d->votes()
-                ->save( factory(App\Vote::class)->make(['definition_id' => $d->id]));
+                ->save( factory(App\Vote::class)
+                ->make(['definition_id' => $d->id]));
             }
           });
     }

@@ -15,16 +15,16 @@ use Faker\Factory;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$factory->define(App\Vote::class, function (Faker\Generator $faker) {
+$factory->define(App\Vote::class, function (Faker\Generator $faker, $params) {
     
     $rand = $faker->numberBetween(1,100);
 
     if ($rand < 80 ) {
       $vote = 1;
-      DB::table('definitions')->where('definition_id', $definition_id)->increment('ups');
+      DB::table('definitions')->where('id', $params['definition_id'])->increment('ups');
     } else {
       $vote = -1;
-      DB::table('definitions')->where('definition_id', $definition_id)->increment('downs');
+      DB::table('definitions')->where('id', $params['definition_id'])->increment('downs');
     }
     
     return [
