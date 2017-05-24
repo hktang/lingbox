@@ -55,7 +55,12 @@ class EntryController extends Controller
      */
     public function show($id)
     {
-        return view('entry.show', ['entry' => Entry::find($id)]);
+        return view('entry.show', [
+            
+            'entry' => Entry::find($id),
+            'searchText'  => $id,
+            
+            ]);
     }
 
     /**
@@ -68,7 +73,8 @@ class EntryController extends Controller
     {
         return view('entry.show', [
 
-                'entry' => Entry::where('text', $text)->first()
+                'entry' => Entry::where('text', $text)->first(), 
+                'searchText'  => $text,
 
                 ]);
     }

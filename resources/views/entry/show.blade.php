@@ -5,7 +5,7 @@
     @if($entry)
       {{__('show.pageTitlePrefix')}} {{$entry->text}} {{__('show.pageTitleSuffix')}} - 
     @else
-      {{__('show.entryNotExist')}} - 
+      {{__('show.entryNotExist', ['searchText' => $searchText])}} - 
     @endif
 
 @endsection
@@ -27,10 +27,14 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="panel-heading">{{__('show.entryNotExist')}}</div>
+                    <div class="panel-heading">
+                      {{__('show.entryNotExist', ['searchText' => $searchText])}}
+                    </div>
 
                     <div class="panel-body">
-                        <a href="{{URL::route('addEntry')}}">{{__('show.createEntry')}}</a>
+                        <a href="{{URL::route('addEntry')}}">
+                          {{__('show.createEntry', ['searchText' => $searchText])}}
+                        </a>
                     </div>                
                 @endif
             </div>

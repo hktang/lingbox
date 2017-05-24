@@ -3,6 +3,6 @@
 return [
     'pageTitlePrefix' => 'Define',
     'pageTitleSuffix' => 'meaning in Chinese',
-    'entryNotExist' => 'Ooops. Your term is not defined yet.',
-    'createEntry' => 'Add this entry to wishlist?',
+    'entryNotExist' => 'Ooops. Your term :searchText is not defined yet.',
+    'createEntry' => 'Suggest :searchText to the community?',
 ];

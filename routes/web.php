@@ -11,10 +11,12 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {return view('welcome');});
 Route::get('/add', 'EntryController@create')->name('addEntry');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/e/{text}', 'EntryController@showByText')->name('showEntrybyText');
 Route::get('/{id}', 'EntryController@show')->name('showEntry');
 
-Auth::routes();
+
