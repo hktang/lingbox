@@ -55,7 +55,22 @@ class EntryController extends Controller
      */
     public function show($id)
     {
-        return view('entry.show', ['entry' => Entry::findOrFail($id)]);
+        return view('entry.show', ['entry' => Entry::find($id)]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showByText($text)
+    {
+        return view('entry.show', [
+
+                'entry' => Entry::where('text', $text)->first()
+
+                ]);
     }
 
     /**
