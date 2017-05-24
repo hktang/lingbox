@@ -12,6 +12,12 @@ class DefinitionsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Definition::class, 200)
-          ->create();
+          ->create()
+          ->each(function ($d) {
+            for ($i = 1; $i <= rand ( 1 , 50 ); $i++) {
+              $d->votes()
+                ->save( factory(App\Vote::class)->make(['definition_id' => $d->id]));
+            }
+          });
     }
 }

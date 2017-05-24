@@ -15,7 +15,7 @@
                     @foreach ($entry->definitions->sortByDesc('ups') as $definition)
                     <div class="definition-single">
                       <p>{{$definition->text}}<p>
-                      <p>&#9786; {{$definition->ups}} | &#9785; {{$definition->downs}}
+                      <p>&#9786; {{$definition->votes->where('vote', '1')->count()}} | &#9785; {{$definition->votes->where('vote', '-1')->count()}}
                     </div>
                     @endforeach
                 </div>

@@ -1,5 +1,7 @@
 <?php
 
+use Faker\Factory;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -13,16 +15,20 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$faker = Faker\Factory::create('zh_CN');
+$factory->define(App\Vote::class, function (Faker\Generator $faker) {
+    
+    $rand = $faker->numberBetween(1,100);
 
-$factory->define(App\Definition::class, function () use ($faker) {
-
+    if ($rand < 80 ) {
+      $vote = 1;
+      DB::table('definitions')->where('definition_id', $definition_id)->increment('ups');
+    } else {
+      $vote = -1;
+      DB::table('definitions')->where('definition_id', $definition_id)->increment('downs');
+    }
+    
     return [
-        'text'     => $faker->country . $faker->state . 
-                      $faker->city . $faker->area . $faker->address . 
-                      '的' . $faker->lastName. $faker->firstNameMale . 
-                      "。例：" . $faker->text,
-        'user_id'  => $faker->randomNumber(1, false),
-        'entry_id'  => $faker->randomNumber(1, false),
+        'ip_address' => $faker->ipv6,
+        'vote' => $vote,
     ];
 });
