@@ -85,7 +85,7 @@ class VoteController extends Controller
     }
 
     /**
-     * Store a new upvote.
+     * Store an upvote if IP address is new for this vote & definition.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -104,8 +104,34 @@ class VoteController extends Controller
             
             ], [ 'vote' => 1 ])->definition->votes->where('vote', 1)->count();
         
-        Definition::where('id',$request->definition_id)
+        Definition::where('id', $request->definition_id)
                     ->update(['ups' => $upVotes]);
+
+        return $request->definition_id;
+    }
+
+    /**
+     * Store a downvote if IP address is new for this vote & definition.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function voteDown(Request $request)
+    {
+        $this->validate($request, [
+            'definition_id' => 'integer',
+            'ip_address' => 'ip',
+        ]);
+ 
+        $downVotes = Vote::updateOrCreate([
+
+              'definition_id' => $request->definition_id,
+              'ip_address' => $request->ip(),
+            
+            ], [ 'vote' => "-1" ])->definition->votes->where('vote', "-1")->count();
+        
+        Definition::where('id', $request->definition_id)
+                    ->update(['downs' => $downVotes]);
 
         return $request->definition_id;
     }
