@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Vote;
+use App\Definition;
 use Illuminate\Http\Request;
 
 class VoteController extends Controller
@@ -96,12 +97,15 @@ class VoteController extends Controller
             'ip_address' => 'ip',
         ]);
  
-        Vote::updateOrCreate([
+        $upVotes = Vote::updateOrCreate([
 
               'definition_id' => $request->definition_id,
               'ip_address' => $request->ip(),
             
-            ], [ 'vote' => 1 ]);
+            ], [ 'vote' => 1 ])->definition->votes->where('vote', 1)->count();
+        
+        Definition::where('id',$request->definition_id)
+                    ->update(['ups' => $upVotes]);
 
         return $request->definition_id;
     }

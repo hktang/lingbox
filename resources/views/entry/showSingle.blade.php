@@ -8,11 +8,11 @@
 
      <span id="upCount{{$definition->id}}">
 
-      {{$definition->votes->where('vote', '1')->count()}}
+      {{$definition->ups}}
 
      </span> | 
 
-     &#9785; {{$definition->votes->where('vote', '-1')->count()}} |
+     &#9785; {{$definition->downs}} |
 
      {{$definition->user->name or __('show.unknownUser')}}, {{$definition->created_at}}
   </div>
