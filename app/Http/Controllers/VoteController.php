@@ -82,4 +82,28 @@ class VoteController extends Controller
     {
         //
     }
+
+    /**
+     * Store a new upvote.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function voteUp(Request $request)
+    {
+        $this->validate($request, [
+            'definition_id' => 'integer',
+            'ip_address' => 'ip',
+        ]);
+ 
+        Vote::updateOrCreate([
+
+              'definition_id' => $request->definition_id,
+              'ip_address' => $request->ip(),
+            
+            ], [ 'vote' => 1 ]);
+
+        return $request->definition_id;
+    }
+
 }
