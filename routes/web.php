@@ -20,5 +20,3 @@ Route::post('/voteDown', 'VoteController@voteDown')->name('voteDown');
 Route::post('/voteUp', 'VoteController@voteUp')->name('voteUp');
 Route::get('/e/{text}', 'EntryController@showByText')->name('showEntrybyText');
 Route::get('/{id}', 'EntryController@show')->name('showEntry');
-
-
