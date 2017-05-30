@@ -15,7 +15,8 @@ class CreateEntriesTable extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->nullable()->index();
+            $table->string('ip_address', 45)->nullable()->index();
             $table->string('text')->unique();
             $table->timestamps();
         });

@@ -14,7 +14,17 @@
                 <div class="panel-heading">{{__('add.addEntry')}}</div>
 
                 <div class="panel-body">
-                  
+
+                  {!! Form::open( ['route' => 'storeEntry'] ) !!}
+
+                    <label for='text'>{{__('add.formEntry')}}</label>
+                    
+                    {{ Form::text( 'text' ) }}
+                    
+                    <input type="submit" value="{{__('add.formSubmit')}}">
+
+                  {!! Form::close() !!}
+
                 </div>
             </div>
         </div>

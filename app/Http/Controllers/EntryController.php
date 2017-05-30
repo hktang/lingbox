@@ -36,15 +36,26 @@ class EntryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'text'        => 'required',
+            'text'        => 'required|max:255|unique:entries',
         ]);
         
-        $entryId = Entry::insertGetId([
-            'text'        => $request->input('text'),
-        ]);
+        if ($request->user()) {
+
+            $entryId = Entry::insertGetId([
+                'text'        => $request->input('text'),
+                'user_id'     => $request->user()->id,
+            ]);
+
+        }else{
+
+            $entryId = Entry::insertGetId([
+                'text'        => $request->input('text'),
+                'ip_address'  => $request->ip(),
+            ]);
+        }
 
         $request->session()->flash('success', 'Entry added!');
-        return redirect()->route('entry.show', $entryId);
+        return redirect()->route('showEntry', $entryId);
     }
 
     /**
