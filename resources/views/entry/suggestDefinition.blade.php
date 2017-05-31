@@ -1,5 +1,3 @@
-<h3>{{__('show.suggestDefinition')}}</h3>
-
 {!! Form::open( ['route' => 'storeDefinition'] ) !!}
 
   {{ Form::textarea( 'definition' ) }}

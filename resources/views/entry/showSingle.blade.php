@@ -28,7 +28,26 @@
 @endforeach
 
 <div class="definition-suggest">
-    @include('entry.suggestDefinition')
+    <h3>{{__('show.suggestDefinition')}}</h3>
+    
+    <p>
+    
+      <a href="{{ route('login') }}">{{__('login.login')}}</a> 
+      
+      {{__('show.or')}}
+      
+      <a href="{{ route('register') }}">{{__('register.register')}}</a> 
+      
+      {{__('show.toSuggestDefinition')}}
+      
+    </p>
+    
+    @if( Auth::user() )
+      
+      @include('entry.suggestDefinition')
+    
+    @endif()
+    
 </div>
 
 
