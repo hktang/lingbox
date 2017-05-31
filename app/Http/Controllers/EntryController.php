@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entry;
+use Lang;
 
 class EntryController extends Controller
 {
@@ -54,8 +55,8 @@ class EntryController extends Controller
             ]);
         }
 
-        $request->session()->flash('success', 'Entry added!');
-        return redirect()->route('showEntry', $entryId);
+        return redirect()->route('showEntry', $entryId)
+                         ->with('success', Lang::get('add.added'));
     }
 
     /**

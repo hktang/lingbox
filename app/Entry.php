@@ -24,4 +24,14 @@ class Entry extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    public function setTextAttribute($value)
+    {
+        return trim($value);
+    }
+    
+    public function getIpAddressAttribute($value)
+    {
+        return substr($value, 0, -3) . "♥♥♥";
+    }
 }

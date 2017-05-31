@@ -27,6 +27,11 @@
 
 @endforeach
 
+<div class="definition-suggest">
+    @include('entry.suggestDefinition')
+</div>
+
+
 <script type="text/javascript">
 
 $(document).ready(function(){

@@ -1,7 +1,9 @@
 <?php
 
 return [
+    'added' => 'Entry added!',
     'addEntry' => 'Add an entry',
-    'formEntry' => 'Term',
+    'error' => 'Oops, entry was not added...',
+    'formEntry' => 'What phrase do you want to define? ',
     'formSubmit' => 'Add',
 ];

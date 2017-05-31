@@ -31,7 +31,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name') }}
+                        {{ config('app.name') }} <sup>Alpha</sup>
                     </a>
                 </div>
 

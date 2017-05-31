@@ -15,6 +15,26 @@
 
     <div class="row">
     
+      <div class="col-md-8 col-md-offset-2">
+      
+          @if ( session('success') )
+            <div class="alert alert-warning .fade .in system-alert">
+          
+                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"> </span> 
+                
+                {{ session('success') }}
+
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" aria-hidden="true">&times;</a>
+                
+            </div>
+          @endif
+        
+      </div>
+      
+    </div>
+    
+    <div class="row">
+    
         <div class="col-md-8 col-md-offset-2">
 
             <div class="panel panel-default">
@@ -24,6 +44,14 @@
                     <div class="panel-heading">
                     
                       <h1>{{$entry->text}}</h1>
+                      
+                      <p>
+                      {{__('show.entryCreatedBy')}} 
+                      
+                      {{$entry->user->name or __('show.unknownUser') . " ($entry->ip_address)" }}
+                      
+                      {{__('show.entryCreatedAt', ['createdAt' => $entry->created_at ])}} 
+                      </p>
                       
                     </div>
 
