@@ -3,7 +3,7 @@
 return [
     'pageTitlePrefix' => 'Define',
     'pageTitleSuffix' => 'meaning in Chinese',
-    'entryCreatedBy' => 'at :createdAt',
+    'entryCreatedAt' => 'at :created',
     'entryCreatedBy' => 'Suggested by: ',
     'entryNotExist' => 'Ooops. Your term :searchText is not defined yet.',
     'createEntry' => 'Suggest :searchText to the community?',

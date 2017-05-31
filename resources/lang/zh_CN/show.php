@@ -3,7 +3,7 @@
 return [
     'pageTitlePrefix' => '热词',
     'pageTitleSuffix' => '是什么意思',
-    'entryCreatedAt' => '于 :createdAt',
+    'entryCreatedAt' => '于 :created',
     'entryCreatedBy' => '添加人：',
     'entryNotExist' => "嗷~ :searchText 还没有定义。",
     'createEntry' => '添加 :searchText 到辞典？',
