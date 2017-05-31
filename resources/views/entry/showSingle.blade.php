@@ -30,6 +30,8 @@
 <div class="definition-suggest">
     <h3>{{__('show.suggestDefinition')}}</h3>
     
+    @if( ! Auth::user() )
+
     <p>
     
       <a href="{{ route('login') }}">{{__('login.login')}}</a> 
@@ -42,11 +44,11 @@
       
     </p>
     
-    @if( Auth::user() )
+    @else
       
       @include('entry.suggestDefinition')
     
-    @endif()
+    @endif
     
 </div>
 
