@@ -92,7 +92,13 @@ class DefinitionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $definition = Definition::find($id);
+      
+      if ($user->can('update', $definition)) {
+        
+        //todo : https://laracasts.com/discuss/channels/laravel/laravel-51-same-form-for-create-and-edit-page?page=1
+        
+      }
     }
 
     /**
