@@ -1,7 +1,7 @@
 @foreach ($entry->definitions->sortByDesc('ups')->take(5) as $definition)
 
   <div class="definition-single">
-    <p>{{$definition->text}}<p>
+    <p>{!! nl2br(e($definition->text)) !!}<p>
     <p>
 
      <a href="#" class="voteUp" id="voteUp{{$definition->id}}">&#9786;</a> 

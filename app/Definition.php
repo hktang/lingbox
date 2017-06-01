@@ -32,4 +32,11 @@ class Definition extends Model
     {
         return $this->hasMany('App\Vote');
     }
+
+    public function getTextAttribute($value)
+    {
+        $value = preg_replace("/[\n\s\r]/", "\n\r", $value);
+        $value = preg_replace("/[\r\n]{2,}/", "\n\n", $value);
+        return $value;
+    }
 }
