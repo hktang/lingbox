@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entry;
+use Carbon\Carbon;
 use Lang;
 
 class EntryController extends Controller
@@ -46,6 +47,8 @@ class EntryController extends Controller
             $entryId = Entry::insertGetId([
                 'text'        => $request->input('text'),
                 'user_id'     => $request->user()->id,
+                'created_at'  => Carbon::now(),
+                'updated_at'  => Carbon::now(),
             ]);
 
         }else{
@@ -53,6 +56,8 @@ class EntryController extends Controller
             $entryId = Entry::insertGetId([
                 'text'        => $request->input('text'),
                 'ip_address'  => $request->ip(),
+                'created_at'  => Carbon::now(),
+                'updated_at'  => Carbon::now(),
             ]);
         }
 

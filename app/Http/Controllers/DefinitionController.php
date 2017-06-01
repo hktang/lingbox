@@ -42,13 +42,14 @@ class DefinitionController extends Controller
         ]);
         
         if ($request->user()) {
-
-            $definitionId = Definition::insertGetId([
-                'text'        => $request->input('text'),
-                'entry_id'     => $entryId,
-                'user_id'     => $request->user()->id,
-            ]);
-
+            
+            $definition = new Definition;
+            
+            $definition->text = $request->input('text');
+            $definition->entry_id = $entryId;
+            $definition->user_id = $request->user()->id;
+            $definition->save();
+            
         }else{
           
           return redirect()->route('showEntry', $entryId)

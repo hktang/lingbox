@@ -8,7 +8,6 @@ class Entry extends Model
 {
     
     protected $fillable   = ['text'];
-    public    $timestamps = true;
     
     /**
      * Get the definitions of the entry.
