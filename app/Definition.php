@@ -35,8 +35,6 @@ class Definition extends Model
 
     public function getTextAttribute($value)
     {
-        $value = preg_replace("/[\n\s\r]/", "\n\r", $value);
-        $value = preg_replace("/[\r\n]{2,}/", "\n\n", $value);
-        return $value;
+        return preg_replace("/[\r\s*\n]{2,}/", "\n\n", $value);
     }
 }
