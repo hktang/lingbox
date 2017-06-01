@@ -35,6 +35,7 @@
                     <label for='text'>{{__('add.formEntry')}}</label> 
                     
                     {{ Form::text( 'text' ) }} 
+                    {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
                     
                     <input type="submit" value="{{__('add.formSubmit')}}">
                     

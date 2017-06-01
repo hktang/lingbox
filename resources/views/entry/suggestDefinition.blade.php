@@ -1,6 +1,8 @@
-{!! Form::open( ['route' => 'storeDefinition'] ) !!}
+{!! Form::open( ['route' => [ 'storeDefinition', $entry->id ]] ) !!}
 
-  {{ Form::textarea( 'definition' ) }}
+  {{ Form::textarea( 'text' ) }}
+  
+  {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
   
   <br/>
   

@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/', function () {return view('welcome');});
 Route::get('/add', 'EntryController@create')->name('addEntry');
 Route::post('/storeEntry', 'EntryController@store')->name('storeEntry');
-Route::post('/storeDefinition', 'EntryController@store')->name('storeDefinition');
+Route::post('/storeDefinition/{entryId}', 'DefinitionController@store')->name('storeDefinition');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/voteDown', 'VoteController@voteDown')->name('voteDown');
 Route::post('/voteUp', 'VoteController@voteUp')->name('voteUp');

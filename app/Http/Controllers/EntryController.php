@@ -38,6 +38,7 @@ class EntryController extends Controller
     {
         $this->validate($request, [
             'text'        => 'required|max:255|unique:entries',
+            'jackpot'     => 'max:0',
         ]);
         
         if ($request->user()) {

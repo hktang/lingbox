@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Definition;
 use Illuminate\Http\Request;
+use Lang;
 
 class DefinitionController extends Controller
 {
@@ -32,9 +34,30 @@ class DefinitionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $entryId)
     {
-        //
+        $this->validate($request, [
+            'text'        => 'required|max:2048|unique:entries',
+            'jackpot'     => 'max:0',
+        ]);
+        
+        if ($request->user()) {
+
+            $definitionId = Definition::insertGetId([
+                'text'        => $request->input('text'),
+                'entry_id'     => $entryId,
+                'user_id'     => $request->user()->id,
+            ]);
+
+        }else{
+          
+          return redirect()->route('showEntry', $entryId)
+                           ->with('warning', Lang::get('addDefinition.failed'));
+                         
+        }
+
+        return redirect()->route('showEntry', $entryId)
+                         ->with('success', Lang::get('addDefinition.added'));
     }
 
     /**
