@@ -11,7 +11,7 @@ class DefinitionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Definition::class, 200)
+        factory(App\Definition::class, 50)
           ->create()
           ->each(function ($d) {
             for ($i = 1; $i <= rand ( 1 , 50 ); $i++) {

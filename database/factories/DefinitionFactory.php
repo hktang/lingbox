@@ -22,7 +22,7 @@ $factory->define(App\Definition::class, function () use ($faker) {
                       $faker->city . $faker->area . $faker->address . 
                       '的' . $faker->lastName. $faker->firstNameMale . 
                       "。例：" . $faker->text,
-        'user_id'  => $faker->randomNumber(1, false),
-        'entry_id'  => $faker->randomNumber(1, false),
+        'user_id'  => $faker->unique()->randomNumber(2, false),
+        'entry_id'  => $faker->unique()->randomNumber(2, false),
     ];
 });
