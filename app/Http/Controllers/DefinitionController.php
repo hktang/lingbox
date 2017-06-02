@@ -92,13 +92,30 @@ class DefinitionController extends Controller
      */
     public function update(Request $request, $id)
     {
+      
+      $this->validate($request, [
+          'text'        => 'required|max:2048|unique:definitions',
+      ]);
+        
       $definition = Definition::find($id);
+      $entryId    = Definition->entry_id;
       
       if ($user->can('update', $definition)) {
         
-        //todo : https://laracasts.com/discuss/channels/laravel/laravel-51-same-form-for-create-and-edit-page?page=1
-        
-      }
+        $definition->text = $request->input('text');
+        $definition->save();
+
+      }else{
+          
+          return redirect()->route('showEntry', $entryId)
+                           ->with('warning', Lang::get('addDefinition.updateFailed'));
+                         
+        }
+
+        return redirect()->route('showEntry', $entryId)
+                         ->with('success', Lang::get('addDefinition.updated'));
+      
+      
     }
 
     /**

@@ -15,10 +15,11 @@ Auth::routes();
 
 Route::get('/', function () {return view('welcome');});
 Route::get('/add', 'EntryController@create')->name('addEntry');
+Route::get('/entry/{id}', 'EntryController@show')->name('showEntry');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storeEntry', 'EntryController@store')->name('storeEntry');
 Route::post('/storeDefinition/{entryId}', 'DefinitionController@store')->name('storeDefinition');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/updateDefinition/{definitionId}', 'DefinitionController@update')->name('updateDefinition');
 Route::post('/voteDown', 'VoteController@voteDown')->name('voteDown');
 Route::post('/voteUp', 'VoteController@voteUp')->name('voteUp');
-Route::get('/entry/{id}', 'EntryController@show')->name('showEntry');
 Route::match(['get', 'post'], '/{text}', 'EntryController@showByText')->name('showEntrybyText');

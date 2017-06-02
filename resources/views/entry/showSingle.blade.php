@@ -6,21 +6,19 @@
 
      <a href="#" class="voteUp" id="voteUp{{$definition->id}}">&#9786;</a> 
 
-     <span id="upCount{{$definition->id}}">
-
-      {{$definition->ups}}
-
-     </span> | 
+     <span id="upCount{{$definition->id}}">{{$definition->ups}}</span> | 
 
      <a href="#" class="voteDown" id="voteDown{{$definition->id}}">&#9785;</a> 
 
-     <span id="downCount{{$definition->id}}">
+     <span id="downCount{{$definition->id}}">{{$definition->downs}}</span> | 
 
-      {{$definition->downs}}
-
-     </span> | 
-
-     {{$definition->user->name or __('show.unknownUser')}}, {{$definition->created_at}}
+     {{$definition->user->name or __('show.unknownUser')}}, {{$definition->created_at}} 
+     
+     @can('update', $definition)
+     
+        | <span>{{__('updateDefinition.edit')}}<span>
+     
+     @endcan
   </div>
   
   <hr />
