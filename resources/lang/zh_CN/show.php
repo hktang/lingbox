@@ -8,6 +8,7 @@ return [
     'entryNotExist' => "嗷~ :searchText 还没有定义。",
     'createEntry' => '添加 :searchText 到辞典？',
     'or' => '或',
+    'singleDesc' => ':created创建，:updated更新',
     'submitDefinition' => '提交释义',
     'suggestDefinition' => '添加释义',
     'toSuggestDefinition' => '以添加释义。',

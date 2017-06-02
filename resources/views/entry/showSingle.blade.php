@@ -12,11 +12,18 @@
 
      <span id="downCount{{$definition->id}}">{{$definition->downs}}</span> | 
 
-     {{$definition->user->name or __('show.unknownUser')}}, {{$definition->created_at->diffForHumans()}} 
+     {{$definition->user->name or __('show.unknownUser')}}
+
+     {{__('show.singleDesc', [
+
+       'created' => $definition->created_at->diffForHumans(),
+       'updated' => $definition->updated_at->diffForHumans(),
+
+     ])}}
      
      @can('update', $definition)
      
-        | <span>{{__('updateDefinition.edit')}}<span>
+        | <a href="{{ route('editDefinition', $definition->id) }}">{{__('updateDefinition.edit')}}</a>
      
      @endcan
   </div>

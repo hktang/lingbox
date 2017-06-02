@@ -78,9 +78,22 @@ class DefinitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+
+        $definition = Definition::find($id);
+        $user       = $request->user();
+
+        if ($user->can('update', $definition)) {
+            return view('definition.edit', [
+            
+            'definition' => Definition::find($id),
+            
+            ]);
+        }else{
+            return redirect()->route('showEntry', $id)
+                ->with('warning', Lang::get('addDefinition.updateFailed'));
+        }
     }
 
     /**
@@ -99,6 +112,7 @@ class DefinitionController extends Controller
         
       $definition = Definition::find($id);
       $entryId    = $definition->entry_id;
+      $user       = $request->user();
       
       if ($user->can('update', $definition)) {
         
