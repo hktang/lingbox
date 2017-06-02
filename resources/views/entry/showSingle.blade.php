@@ -30,17 +30,9 @@
     
     @if( ! Auth::user() )
 
-    <p>
-    
-      <a href="{{ route('login') }}">{{__('login.login')}}</a> 
+      <p>{{__('login.login')}} {{__('show.or')}} <a href="{{ route('register') }}">{{__('register.register')}}</a> {{__('show.toSuggestDefinition')}}</p>
       
-      {{__('show.or')}}
-      
-      <a href="{{ route('register') }}">{{__('register.register')}}</a> 
-      
-      {{__('show.toSuggestDefinition')}}
-      
-    </p>
+      @include('auth.loginForm')
     
     @else
       
