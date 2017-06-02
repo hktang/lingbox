@@ -98,7 +98,7 @@ class DefinitionController extends Controller
       ]);
         
       $definition = Definition::find($id);
-      $entryId    = Definition->entry_id;
+      $entryId    = $definition->entry_id;
       
       if ($user->can('update', $definition)) {
         

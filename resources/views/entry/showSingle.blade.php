@@ -26,16 +26,16 @@
 @endforeach
 
 <div class="definition-suggest">
-    <h3>{{__('show.suggestDefinition')}}</h3>
     
     @if( ! Auth::user() )
-
-      <p>{{__('login.login')}} {{__('show.or')}} <a href="{{ route('register') }}">{{__('register.register')}}</a> {{__('show.toSuggestDefinition')}}</p>
       
+      <h3>{{__('show.suggestDefinition')}}</h3>
+      <p>{{__('login.login')}} {{__('show.or')}} <a href="{{ route('register') }}">{{__('register.register')}}</a> {{__('show.toSuggestDefinition')}}</p>
       @include('auth.loginForm')
     
-    @else
+    @elseif ( ! Auth::user()->definitions->where('entry_id', $entry->id)->first() )
       
+      <h3>{{__('show.suggestDefinition')}}</h3>
       @include('entry.suggestDefinition')
     
     @endif

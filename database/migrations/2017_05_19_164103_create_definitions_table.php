@@ -20,6 +20,7 @@ class CreateDefinitionsTable extends Migration
             $table->integer('ups')->unsigned()->default(0);
             $table->integer('downs')->unsigned()->default(0);
             $table->string('text')->nullable();
+         // $table->unique(array('user_id', 'entry_id'));
             $table->timestamps();
         });
     }
