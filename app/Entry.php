@@ -25,13 +25,13 @@ class Entry extends Model
         return $this->belongsTo('App\User');
     }
     
-    public function setTextAttribute($value)
+    public function setTextAttribute($text)
     {
-        $this->attributes['text'] = trim($value);
+        $this->attributes['text'] = trim($text);
     }
-    
-    public function getIpAddressAttribute($value)
+
+    public function getIpAddressAttribute($ipAddress)
     {
-        return substr($value, 0, -3) . "♥♥♥";
+        return substr($ipAddress, 0, -3) . "♥♥♥";
     }
 }

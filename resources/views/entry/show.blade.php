@@ -40,7 +40,7 @@
                       
                       {{$entry->user->name or __('show.unknownUser') . " ($entry->ip_address)" }}
                       
-                      {{__('show.entryCreatedAt', ['created' => $entry->created_at ])}} 
+                      {{__('show.entryCreatedAt', ['created' => $entry->created_at->diffForHumans() ])}} 
                       </p>
                       
                     </div>

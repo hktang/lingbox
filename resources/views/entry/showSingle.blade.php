@@ -12,7 +12,7 @@
 
      <span id="downCount{{$definition->id}}">{{$definition->downs}}</span> | 
 
-     {{$definition->user->name or __('show.unknownUser')}}, {{$definition->created_at}} 
+     {{$definition->user->name or __('show.unknownUser')}}, {{$definition->created_at->diffForHumans()}} 
      
      @can('update', $definition)
      
