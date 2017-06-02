@@ -27,7 +27,7 @@ class Entry extends Model
     
     public function setTextAttribute($value)
     {
-        return trim($value);
+        $this->attributes['text'] = trim($value);
     }
     
     public function getIpAddressAttribute($value)
