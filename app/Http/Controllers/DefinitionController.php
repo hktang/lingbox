@@ -37,7 +37,7 @@ class DefinitionController extends Controller
     public function store(Request $request, $entryId)
     {
         $this->validate($request, [
-            'text'        => 'required|max:2048|unique:entries',
+            'text'        => 'required|max:2048|unique:definitions',
             'jackpot'     => 'max:0',
         ]);
         
