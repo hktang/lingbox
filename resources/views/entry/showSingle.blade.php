@@ -1,34 +1,43 @@
 @foreach ($entry->definitions->sortByDesc('ups')->take(5) as $definition)
+<div class="row">
 
-  <div class="definition-single">
-    <p>{!! nl2br(e($definition->text)) !!}<p>
-    <p>
-
-     <a href="#" class="voteUp" id="voteUp{{$definition->id}}">&#9786;</a> 
-
-     <span id="upCount{{$definition->id}}">{{$definition->ups}}</span> | 
-
-     <a href="#" class="voteDown" id="voteDown{{$definition->id}}">&#9785;</a> 
-
-     <span id="downCount{{$definition->id}}">{{$definition->downs}}</span> | 
-
-     {{$definition->user->name or __('show.unknownUser')}}
-
-     {{__('show.singleDesc', [
-
-       'created' => $definition->created_at->diffForHumans(),
-       'updated' => $definition->updated_at->diffForHumans(),
-
-     ])}}
-     
-     @can('update', $definition)
-     
-        | <a href="{{ route('editDefinition', $definition->id) }}">{{__('updateDefinition.edit')}}</a>
-     
-     @endcan
+  <div class="col-xs-1 definition-votes">
+  
   </div>
   
-  <hr />
+  <div class="col-xs-11 definition-body">
+    <div class="definition-single">
+      <p>{!! nl2br(e($definition->text)) !!}<p>
+      <p>
+
+       <a href="#" class="voteUp" id="voteUp{{$definition->id}}">&#9786;</a> 
+
+       <span id="upCount{{$definition->id}}">{{$definition->ups}}</span> | 
+
+       <a href="#" class="voteDown" id="voteDown{{$definition->id}}">&#9785;</a> 
+
+       <span id="downCount{{$definition->id}}">{{$definition->downs}}</span> | 
+
+       {{$definition->user->name or __('show.unknownUser')}}
+
+       {{__('show.singleDesc', [
+
+         'created' => $definition->created_at->diffForHumans(),
+         'updated' => $definition->updated_at->diffForHumans(),
+
+       ])}}
+       
+       @can('update', $definition)
+       
+          | <a href="{{ route('editDefinition', $definition->id) }}">{{__('updateDefinition.edit')}}</a>
+       
+       @endcan
+    </div>
+  </div>
+  
+</div>  
+  
+<hr />
 
 @endforeach
 

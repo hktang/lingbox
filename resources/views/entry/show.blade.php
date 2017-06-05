@@ -33,15 +33,26 @@
                   
                     <div class="panel-heading">
                     
-                      <h1>{{$entry->text}}</h1>
+                      <div class="row">
                       
-                      <p>
-                      {{__('show.entryCreatedBy')}} 
-                      
-                      {{$entry->user->name or __('show.unknownUser') . " ($entry->ip_address)" }}
-                      
-                      {{__('show.entryCreatedAt', ['created' => $entry->created_at->diffForHumans() ])}} 
-                      </p>
+                        <div class="col-xs-1 entry-votes">
+                        
+                        </div>
+
+                        <div class="col-xs-11 entry-body">
+                        
+                          <h1 id="entry-text">{{$entry->text}}</h1>
+                        
+                          <p>
+                            {{__('show.entryCreatedBy')}} 
+                            
+                            {{$entry->user->name or __('show.unknownUser') . " ($entry->ip_address)" }}
+                            
+                            {{__('show.entryCreatedAt', ['created' => $entry->created_at->diffForHumans() ])}} 
+                          </p>
+
+                        </div>
+                      </div>
                       
                     </div>
 
