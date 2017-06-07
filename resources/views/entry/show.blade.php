@@ -42,7 +42,7 @@
                         <div class="col-xs-11 entry-body">
                         
                           <h1 id="entry-text">{{$entry->text}}</h1>
-                        
+                            {{ $pageViews }} {{ $city }}
                           <p>
                             {{__('show.entryCreatedBy')}} 
                             

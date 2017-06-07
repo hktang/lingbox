@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Entry;
 use Carbon\Carbon;
 use Lang;
+use Tracker;
 
 class EntryController extends Controller
 {
@@ -73,11 +74,14 @@ class EntryController extends Controller
      */
     public function show($id)
     {
+        $visitor = Tracker::currentSession();
+        
         return view('entry.show', [
             
             'entry' => Entry::find($id),
             'searchText'  => $id,
-            
+            'pageViews' => Tracker::pageViews(60*24)->count(),
+            'city' => $visitor->device->is_mobile,
             ]);
     }
 
