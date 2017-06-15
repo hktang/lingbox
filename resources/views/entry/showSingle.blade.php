@@ -10,7 +10,7 @@
       <p>{!! nl2br(e($definition->text)) !!}<p>
       <p>
 
-       <a href="#" class="voteUp" id="voteUp{{$definition->id}}">&#9786;</a> 
+       <a href="#" class="def-voteUp" id="def-voteUp{{$definition->id}}">&#9786;</a> 
 
        <span id="upCount{{$definition->id}}">{{$definition->ups}}</span> | 
 
@@ -65,16 +65,17 @@ $(document).ready(function(){
 
 
 
-  $('.voteUp').click(function(){
+  $('.def-voteUp').click(function(){
 
-    var definitionId = $(this).attr('id').replace('voteUp','');
+    var definitionId = $(this).attr('id').replace('def-voteUp','');
 
     $.ajax({
-      url: "{{URL::route('voteUp')}}",
+      url: "{{URL::route('vote')}}",
       type: "post",
       data: {
 
         'definition_id': definitionId,
+        'vote_type':'up',
         '_token': "{{ csrf_token() }}"
 
       },
@@ -89,7 +90,7 @@ $(document).ready(function(){
           $upCount.text( + $upCount.text() + 1 ).addClass("voted");
         
         }
-
+        console.log(dId);
       },
 
       error: function(data){
@@ -106,11 +107,12 @@ $(document).ready(function(){
     var definitionId = $(this).attr('id').replace('voteDown','');
 
     $.ajax({
-      url: "{{URL::route('voteDown')}}",
+      url: "{{URL::route('vote')}}",
       type: "post",
       data: {
 
         'definition_id': definitionId,
+        'vote_type':'down',
         '_token': "{{ csrf_token() }}"
 
       },
@@ -125,7 +127,7 @@ $(document).ready(function(){
           $downCount.text( + $downCount.text() + 1 ).addClass("voted");
         
         }
-
+        console.log(dId);
       },
 
       error: function(data){

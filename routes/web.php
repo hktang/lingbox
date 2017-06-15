@@ -21,6 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storeEntry', 'EntryController@store')->name('storeEntry');
 Route::post('/storeDefinition/{entryId}', 'DefinitionController@store')->name('storeDefinition');
 Route::post('/definition/update/{definitionId}', 'DefinitionController@update')->name('updateDefinition');
-Route::post('/voteDown', 'VoteController@voteDown')->name('voteDown');
-Route::post('/voteUp', 'VoteController@voteUp')->name('voteUp');
+Route::post('/vote', 'VoteController@vote')->name('vote');
 Route::match(['get', 'post'], '/{text}', 'EntryController@showByText')->name('showEntrybyText');

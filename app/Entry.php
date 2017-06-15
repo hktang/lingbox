@@ -25,6 +25,14 @@ class Entry extends Model
         return $this->belongsTo('App\User');
     }
     
+    /**
+     * Get the votes of the entry.
+     */
+    public function votes()
+    {
+        return $this->hasMany('App\Vote');
+    }
+    
     public function setTextAttribute($text)
     {
         $this->attributes['text'] = trim($text);

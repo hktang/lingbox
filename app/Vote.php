@@ -16,4 +16,12 @@ class Vote extends Model
     {
         return $this->belongsTo('App\Definition');
     }
+    
+    /**
+     * Get the entry that the vote is casted on.
+     */
+    public function Entry()
+    {
+        return $this->belongsTo('App\Entry');
+    }
 }
