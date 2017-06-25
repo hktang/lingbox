@@ -20,15 +20,15 @@ $factory->define(App\Vote::class, function (Faker\Generator $faker, $params) {
     $rand = $faker->numberBetween(1,100);
 
     if ($rand < 80 ) {
-      $vote = 1;
+      $value = 1;
       DB::table('definitions')->where('id', $params['definition_id'])->increment('ups');
     } else {
-      $vote = -1;
+      $value = -1;
       DB::table('definitions')->where('id', $params['definition_id'])->increment('downs');
     }
     
     return [
         'ip_address' => $faker->ipv6,
-        'vote' => $vote,
+        'value' => $value,
     ];
 });

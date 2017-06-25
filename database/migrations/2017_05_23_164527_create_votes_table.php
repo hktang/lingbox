@@ -19,7 +19,7 @@ class CreateVotesTable extends Migration
             $table->integer('definition_id')->unsigned()->index()->nullable();
             $table->integer('entry_id')->unsigned()->index()->nullable();
             $table->string('ip_address', 45)->index();
-            $table->smallInteger('vote');
+            $table->smallInteger('value');
             $table->timestamps();
         });
     }

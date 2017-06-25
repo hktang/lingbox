@@ -19,7 +19,6 @@ class DefinitionsTableSeeder extends Seeder
                 ->save( factory(App\Vote::class)
                 ->make([
                     'definition_id' => $d->id,
-                    'user_id' => $d->user_id,
                   ]));
             }
           });
