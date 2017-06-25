@@ -24,4 +24,12 @@ class Vote extends Model
     {
         return $this->belongsTo('App\Entry');
     }
+
+    /**
+     * Get the user that the vote is casted on.
+     */
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

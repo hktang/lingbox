@@ -68,14 +68,18 @@ class EntryController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+
+        $entry = Entry::findOrFail($id);
+
         return view('entry.show', [
             
-            'entry' => Entry::find($id),
+            'entry'       => $entry,
             'searchText'  => $id,
             
             ]);

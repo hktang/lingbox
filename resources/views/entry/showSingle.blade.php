@@ -2,7 +2,17 @@
 <div class="row">
 
   <div class="col-xs-1 definition-votes">
-  
+
+    @if(Auth::user() && Auth::user()->votes->where('definition_id', $definition->id)->first() )
+
+
+
+    @else
+
+      Not voted
+
+    @endif
+
   </div>
   
   <div class="col-xs-11 definition-body">
@@ -10,13 +20,13 @@
       <p>{!! nl2br(e($definition->text)) !!}<p>
       <p>
 
-       <a href="#" class="def-voteUp" id="def-voteUp{{$definition->id}}">&#9786;</a> 
+       <a href="#" class="vote vote-up {{ $voted or "" }}" id="def-up-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-top"></i></a> 
 
-       <span id="upCount{{$definition->id}}">{{$definition->ups}}</span> | 
+       <span id="def-up-count-{{$definition->id}}">{{$definition->ups}}</span> | 
 
-       <a href="#" class="voteDown" id="voteDown{{$definition->id}}">&#9785;</a> 
+       <a href="#" class="vote vote-down {{ $voted or "" }}" id="def-down-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-bottom"></i></a> 
 
-       <span id="downCount{{$definition->id}}">{{$definition->downs}}</span> | 
+       <span id="def-down-count-{{$definition->id}}">{{$definition->downs}}</span> | 
 
        {{$definition->user->name or __('show.unknownUser')}}
 
@@ -63,34 +73,33 @@
 
 $(document).ready(function(){
 
+  $('.vote-up').click(function(){
 
-
-  $('.def-voteUp').click(function(){
-
-    var definitionId = $(this).attr('id').replace('def-voteUp','');
+    var definitionId = $(this).attr('id').replace('def-up-','');
 
     $.ajax({
       url: "{{URL::route('vote')}}",
       type: "post",
       data: {
 
-        'definition_id': definitionId,
-        'vote_type':'up',
+        'definitionId': definitionId,
+        'value': 1,
+        'voteFor': "definition",
         '_token': "{{ csrf_token() }}"
 
       },
 
-      success: function(dId){
+      success: function(response){
 
-        var upCountId = '#upCount' + dId;
+/*        var upCountId = '#def-up-count-' + dId;
         var $upCount = $(upCountId);
 
         if (! $upCount.hasClass("voted")){
 
           $upCount.text( + $upCount.text() + 1 ).addClass("voted");
         
-        }
-        console.log(dId);
+        }*/
+        console.log(response);
       },
 
       error: function(data){
@@ -101,42 +110,6 @@ $(document).ready(function(){
     });      
   }); 
 
-
-  $('.voteDown').click(function(){
-
-    var definitionId = $(this).attr('id').replace('voteDown','');
-
-    $.ajax({
-      url: "{{URL::route('vote')}}",
-      type: "post",
-      data: {
-
-        'definition_id': definitionId,
-        'vote_type':'down',
-        '_token': "{{ csrf_token() }}"
-
-      },
-
-      success: function(dId){
-
-        var downCountId = '#downCount' + dId;
-        var $downCount = $(downCountId);
-
-        if (! $downCount.hasClass("voted")){
-
-          $downCount.text( + $downCount.text() + 1 ).addClass("voted");
-        
-        }
-        console.log(dId);
-      },
-
-      error: function(data){
-
-        console.log(data.responseText);
-
-      }
-    });      
-  }); 
 
 
 });

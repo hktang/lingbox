@@ -35,8 +35,18 @@
                     
                       <div class="row">
                       
-                        <div class="col-md-1 entry-votes">
-                          
+                        <div class="col-xs-1 entry-votes">
+
+                          @if(Auth::user() && Auth::user()->votes->where('entry_id', $entry->id))
+
+                            {{ Auth::user()->votes->where('entry_id', $entry->id) }}
+
+                          @else
+
+                            Not voted
+
+                          @endif
+                        
                         </div>
 
                         <div class="col-xs-11 entry-body">
