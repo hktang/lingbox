@@ -7,3 +7,23 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+/* Colors */
+
+$accent      : #f4645f;
+$lingboxGray : #ccc;
+
+
+/* Site specific */
+
+
+/* Entry.show */
+
+.vote {
+  color : $lingboxGray;
+} 
+
+.voted {
+  color : $accent;
+}
