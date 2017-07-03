@@ -11,6 +11,7 @@
 @endsection
 
 @section('content')
+
 <div class="container">
 
     <div class="row">
@@ -49,8 +50,11 @@
                         
                         </div>
 
+                        <lingbox-entry v-bind:entry="{text: {!! $entry->text !!}}"></lingbox-entry>
+
                         <div class="col-xs-11 entry-body">
-                        
+
+
                           <h1 id="entry-text">{{$entry->text}}</h1>
                         
                           <p>
@@ -67,6 +71,8 @@
                     </div>
 
                     <div class="panel-body">
+
+                        <lingbox-definitions></lingbox-definitions>
                     
                         @include('entry.showSingle')
                         
