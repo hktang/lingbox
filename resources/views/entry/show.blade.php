@@ -50,8 +50,6 @@
                         
                         </div>
 
-                        <lingbox-entry v-bind:entry="{text: {!! $entry->text !!}}"></lingbox-entry>
-
                         <div class="col-xs-11 entry-body">
 
 
@@ -71,8 +69,6 @@
                     </div>
 
                     <div class="panel-body">
-
-                        <lingbox-definitions></lingbox-definitions>
                     
                         @include('entry.showSingle')
                         
