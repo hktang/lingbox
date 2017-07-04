@@ -11,6 +11,7 @@
 @endsection
 
 @section('content')
+
 <div class="container">
 
     <div class="row">
@@ -35,12 +36,31 @@
                     
                       <div class="row">
                       
-                        <div class="col-md-1 entry-votes">
-                          
+                        <div class="col-xs-2 entry-votes">
+
+                        <a  href="#" 
+                           class="vote vote-up @if($userEntryVote == 1) voted @endif" 
+                              id="entry-vote-up"
+                           title="{{__('show.upVoteEntry')}}"
+                        >
+                          <i class="glyphicon glyphicon-triangle-top"></i>
+                        </a>
+
+                        <p id="entry-count">Count</p>
+
+                        <a  href="#" 
+                           class="vote vote-down @if($userEntryVote == -1) voted @endif" 
+                              id="entry-vote-down"
+                           title="{{__('show.downVoteEntry')}}"
+                        >
+                          <i class="glyphicon glyphicon-triangle-bottom"></i>
+                        </a>
+                        
                         </div>
 
-                        <div class="col-xs-11 entry-body">
-                        
+                        <div class="col-xs-10 entry-body">
+
+
                           <h1 id="entry-text">{{$entry->text}}</h1>
                         
                           <p>

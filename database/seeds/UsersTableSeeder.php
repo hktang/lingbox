@@ -19,5 +19,11 @@ class UsersTableSeeder extends Seeder
                   ->save( factory(App\Entry::class)->make());
               }
           });
+
+        DB::table('users')->insert([
+            'name' => 'hktang',
+            'email' => "1@1.com",
+            'password' => Hash::make('letmeout'),
+        ]);
     }
 }

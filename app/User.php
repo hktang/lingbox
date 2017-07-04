@@ -43,4 +43,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Definition');
     }
+
+    /**
+     * Get the votes casted by the user.
+     */
+    public function votes()
+    {
+        return $this->hasMany('App\Vote');
+    }
 }

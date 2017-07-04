@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entry;
+use App\Vote;
 use Carbon\Carbon;
 use Lang;
 
@@ -68,17 +69,48 @@ class EntryController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+
+        $entry = Entry::findOrFail($id);
+
+        if( $request->user() ){
+            
+            $vote = Vote::where([
+                
+                "entry_id" => $id, 
+                "user_id"  => $request->user()->id,
+                
+                ])->first();
+
+            if( $vote ){
+
+              $userEntryVote = $vote->value;
+
+            }else{
+
+              $userEntryVote = 0; 
+            
+            }
+
+        }else{
+
+            $userEntryVote = 0; 
+
+        }
+
         return view('entry.show', [
             
-            'entry' => Entry::find($id),
+            'entry'       => $entry,
             'searchText'  => $id,
-            
+            'userEntryVote'    => $userEntryVote,
+
             ]);
+
     }
 
     /**

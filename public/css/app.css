@@ -8350,3 +8350,22 @@ button.close {
   }
 }
 
+/* Colors */
+
+/* Site specific */
+
+/* Entry.show */
+
+.vote {
+  color: #ccc;
+}
+
+.voted {
+  color: #f4645f;
+}
+
+.entry-votes {
+  text-align: center;
+  font-size: 1.5em;
+}
+
