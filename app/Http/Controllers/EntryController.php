@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entry;
+use App\Vote;
 use Carbon\Carbon;
 use Lang;
 
@@ -77,12 +78,39 @@ class EntryController extends Controller
 
         $entry = Entry::findOrFail($id);
 
+        if( $request->user() ){
+            
+            $vote = Vote::where([
+                
+                "entry_id" => $id, 
+                "user_id"  => $request->user()->id,
+                
+                ])->first();
+
+            if( $vote ){
+
+              $userEntryVote = $vote->value;
+
+            }else{
+
+              $userEntryVote = 0; 
+            
+            }
+
+        }else{
+
+            $userEntryVote = 0; 
+
+        }
+
         return view('entry.show', [
             
             'entry'       => $entry,
             'searchText'  => $id,
-            
+            'userEntryVote'    => $userEntryVote,
+
             ]);
+
     }
 
     /**

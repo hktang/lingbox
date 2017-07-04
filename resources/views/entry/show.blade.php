@@ -36,21 +36,29 @@
                     
                       <div class="row">
                       
-                        <div class="col-xs-1 entry-votes">
+                        <div class="col-xs-2 entry-votes">
 
-                          @if(Auth::user() && Auth::user()->votes->where('entry_id', $entry->id))
+                        <a  href="#" 
+                           class="vote vote-up @if($userEntryVote == 1) voted @endif" 
+                              id="entry-vote-up"
+                           title="{{__('show.upVoteEntry')}}"
+                        >
+                          <i class="glyphicon glyphicon-triangle-top"></i>
+                        </a>
 
-                            {{ Auth::user()->votes->where('entry_id', $entry->id) }}
+                        <p id="entry-count">Count</p>
 
-                          @else
-
-                            Not voted
-
-                          @endif
+                        <a  href="#" 
+                           class="vote vote-down @if($userEntryVote == -1) voted @endif" 
+                              id="entry-vote-down"
+                           title="{{__('show.downVoteEntry')}}"
+                        >
+                          <i class="glyphicon glyphicon-triangle-bottom"></i>
+                        </a>
                         
                         </div>
 
-                        <div class="col-xs-11 entry-body">
+                        <div class="col-xs-10 entry-body">
 
 
                           <h1 id="entry-text">{{$entry->text}}</h1>

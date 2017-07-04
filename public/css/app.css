@@ -8364,3 +8364,8 @@ button.close {
   color: #f4645f;
 }
 
+.entry-votes {
+  text-align: center;
+  font-size: 1.5em;
+}
+

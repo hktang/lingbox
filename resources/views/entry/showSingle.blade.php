@@ -1,30 +1,16 @@
 @foreach ($entry->definitions->sortByDesc('ups')->take(5) as $definition)
 <div class="row">
-
-  <div class="col-xs-1 definition-votes">
-
-    @if(Auth::user() && Auth::user()->votes->where('definition_id', $definition->id)->first() )
-
-
-
-    @else
-
-      Not voted
-
-    @endif
-
-  </div>
   
-  <div class="col-xs-11 definition-body">
+  <div class="col-xs-12 definition-body">
     <div class="definition-single">
       <p>{!! nl2br(e($definition->text)) !!}<p>
       <p>
 
-       <a href="#" class="vote vote-up {{ $voted or "" }}" id="def-up-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-top"></i></a> 
+       <a href="#" class="vote vote-up {{ $userVote or '' }}" id="def-up-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-top"></i></a> 
 
        <span id="def-up-count-{{$definition->id}}">{{$definition->ups}}</span> | 
 
-       <a href="#" class="vote vote-down {{ $voted or "" }}" id="def-down-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-bottom"></i></a> 
+       <a href="#" class="vote vote-down {{ $userVote or '' }}" id="def-down-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-bottom"></i></a> 
 
        <span id="def-down-count-{{$definition->id}}">{{$definition->downs}}</span> | 
 
