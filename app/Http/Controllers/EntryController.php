@@ -78,6 +78,8 @@ class EntryController extends Controller
 
         $entry = Entry::findOrFail($id);
 
+        /* Determines of a user has voted or not */
+
         if( $request->user() ){
             
             $vote = Vote::where([

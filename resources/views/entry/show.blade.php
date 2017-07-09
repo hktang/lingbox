@@ -46,7 +46,7 @@
                           <i class="glyphicon glyphicon-triangle-top"></i>
                         </a>
 
-                        <p id="entry-count">Count</p>
+                        <p id="entry-count">{{ $entry->votes->count() }}</p>
 
                         <a  href="#" 
                            class="vote vote-down @if($userEntryVote == -1) voted @endif" 

@@ -85,11 +85,13 @@ class DefinitionController extends Controller
         $user       = $request->user();
 
         if ($user->can('update', $definition)) {
+            
             return view('definition.edit', [
             
             'definition' => Definition::find($id),
             
             ]);
+
         }else{
             return redirect()->route('showEntry', $id)
                 ->with('warning', Lang::get('addDefinition.updateFailed'));

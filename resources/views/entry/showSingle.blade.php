@@ -6,13 +6,9 @@
       <p>{!! nl2br(e($definition->text)) !!}<p>
       <p>
 
-       <a href="#" class="vote vote-up {{ $userVote or '' }}" id="def-up-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-top"></i></a> 
+       @include('entry.singleVotes')
 
-       <span id="def-up-count-{{$definition->id}}">{{$definition->ups}}</span> | 
-
-       <a href="#" class="vote vote-down {{ $userVote or '' }}" id="def-down-{{$definition->id}}"><i class="glyphicon glyphicon-triangle-bottom"></i></a> 
-
-       <span id="def-down-count-{{$definition->id}}">{{$definition->downs}}</span> | 
+       | 
 
        {{$definition->user->name or __('show.unknownUser')}}
 
