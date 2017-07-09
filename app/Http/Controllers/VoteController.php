@@ -93,37 +93,56 @@ class VoteController extends Controller
     public function vote(Request $request)
     {
         $this->validate($request, [
-            'voteFor'      => 'in:definition,entry',
-            'definitionId' => 'sometimes|required|integer',
-            'entryId'      => 'sometimes|required|integer',
-            'value'        => 'in:-1,1',
-            'ipAddress'    => 'ip',
+            'votable_id'      => 'required|integer',
+            'votable_type'    => 'required',
+            'value'           => 'in:-1,1',
+            'user_entry_value' => 'in:-1,1',
         ]);
 
         if ( $request->user() ){
 
-            //save user_id
-            if ( $request
-                  ->user()
-                  ->votes
-                  ->whereColumn([
-                      
-                        ["value", "=", $request->value],
-                        ["definition_id", "=", $request->definitionId],
+            if ( $request->votable_type == 'Entry' ){
+            
+                /* Vote for entries */
+                
+                if ( $request->value == $request->user_entry_value ){
 
-                      ])
-                  ->first() ){
+                    /* Already voted */
 
-                return "Already voted";
+                    return "Already voted up/down";
 
-            }else{
+                }else{
 
-                return "Not voted";
-            }
+                    /* Not yet voted */
+
+                    $vote = Vote::firstOrNew([
+
+                        'user_id'        => $request->user()->id,
+                        'votable_id'     => $request->votable_id,
+                        'votable_type'   => 'App\Entry',
+
+                    ]);
+
+                    $vote->value        = $request->value;
+                    $vote->votable_id   = $request->votable_id;
+                    $vote->votable_type = 'App\Entry';
+                    $vote->ip_address   = $request->ip();
+                    $vote->save();
+
+                    return "vote ". $request->value;
+
+                }
+
+            }else if ( $request->votable_type == 'Definition' ){
+                
+                /* Vote for definitions */ 
+                
+                    return "Voting for definitions";
+                }
 
         }else{
 
-            //save ip address
+            return "?";
         }
 
     }

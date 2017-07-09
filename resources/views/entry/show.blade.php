@@ -39,7 +39,7 @@
                         <div class="col-xs-2 entry-votes">
 
                         <a  href="#" 
-                           class="vote vote-up @if($userEntryVote === 1) voted @endif" 
+                           class="vote vote-up vote-entry @if($userEntryVote === 1) voted @endif" 
                               id="entry-vote-up"
                            title="{{__('show.upVoteEntry')}}"
                         >
@@ -49,7 +49,7 @@
                         <p id="entry-count">{{ $entry->votes->count() }}</p>
 
                         <a  href="#" 
-                           class="vote vote-down @if($userEntryVote === -1) voted @endif" 
+                           class="vote vote-down vote-entry @if($userEntryVote === -1) voted @endif" 
                               id="entry-vote-down"
                            title="{{__('show.downVoteEntry')}}"
                         >
@@ -105,4 +105,49 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+    $('.vote').click(function(){
+
+      var entryId        = {{ $entry->id }};
+      var voteValue      = $(this).hasClass('vote-up') ? 1 : -1 ;
+      var voteType       = $(this).hasClass('vote-entry') ? 'Entry' : 'Definition' ;
+      var userEntryValue = {{ $userEntryVote }};
+      var voteToken      = "{{ csrf_token() }}";
+
+      $.ajax({
+        url: "{{URL::route('vote')}}",
+        type: "post",
+        data: {
+
+          'votable_id'       : entryId,
+          'votable_type'     : voteType,
+          'value'            : voteValue,
+          'user_entry_value' : userEntryValue,
+          '_token'           : voteToken
+
+        },
+
+        success: function(response){
+
+          console.log(response);
+        },
+
+        error: function(data){
+
+          console.log(data.responseText);
+
+        }
+      });      
+    }); 
+
+  });
+  
+</script>
+
+
 @endsection
