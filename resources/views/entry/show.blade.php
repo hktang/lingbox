@@ -39,7 +39,7 @@
                         <div class="col-xs-2 entry-votes">
 
                         <a  href="#" 
-                           class="vote vote-up @if($userEntryVote == 1) voted @endif" 
+                           class="vote vote-up @if($userEntryVote === 1) voted @endif" 
                               id="entry-vote-up"
                            title="{{__('show.upVoteEntry')}}"
                         >
@@ -49,7 +49,7 @@
                         <p id="entry-count">{{ $entry->votes->count() }}</p>
 
                         <a  href="#" 
-                           class="vote vote-down @if($userEntryVote == -1) voted @endif" 
+                           class="vote vote-down @if($userEntryVote === -1) voted @endif" 
                               id="entry-vote-down"
                            title="{{__('show.downVoteEntry')}}"
                         >

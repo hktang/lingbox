@@ -15,11 +15,11 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index()->nullable();
-            $table->integer('definition_id')->unsigned()->index()->nullable();
-            $table->integer('entry_id')->unsigned()->index()->nullable();
-            $table->string('ip_address', 45)->index();
+            $table->integer('votable_id')->index();
+            $table->string('votable_type')->index();
             $table->smallInteger('value');
+            $table->integer('user_id')->index()->nullable();
+            $table->string('ip_address', 45)->index();
             $table->timestamps();
         });
     }

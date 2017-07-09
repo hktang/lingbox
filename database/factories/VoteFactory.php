@@ -16,19 +16,35 @@ use Faker\Factory;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 $factory->define(App\Vote::class, function (Faker\Generator $faker, $params) {
-    
+
+    $votable_id = ! empty($params['votable_id']) 
+                  ? $params['votable_id'] 
+                  : $faker->numberBetween(1,50);
+
     $rand = $faker->numberBetween(1,100);
 
     if ($rand < 80 ) {
+      
       $value = 1;
-      DB::table('definitions')->where('id', $params['definition_id'])->increment('ups');
+      
+      DB::table('definitions')
+        ->where('id', $votable_id )
+        ->increment('ups');
+
     } else {
+
       $value = -1;
-      DB::table('definitions')->where('id', $params['definition_id'])->increment('downs');
+
+      DB::table('definitions')
+        ->where('id', $votable_id )
+        ->increment('downs');
     }
-    
+
+
     return [
         'ip_address' => $faker->ipv6,
+        'votable_id' => $votable_id,
+        'votable_type' => $params['votable_type'],
         'value' => $value,
     ];
 });

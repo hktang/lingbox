@@ -18,7 +18,8 @@ class DefinitionsTableSeeder extends Seeder
               $d->votes()
                 ->save( factory(App\Vote::class)
                 ->make([
-                    'definition_id' => $d->id,
+                    'votable_id' => $d->id,
+                    'votable_type' => 'App\Definition',
                   ]));
             }
           });

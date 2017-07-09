@@ -30,7 +30,7 @@ class Entry extends Model
      */
     public function votes()
     {
-        return $this->hasMany('App\Vote');
+        return $this->morphMany('App\Vote', 'votable');
     }
     
     public function setTextAttribute($text)

@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 20)
+        factory(App\User::class, 10)
           ->create()
           ->each(function ($u) {
               for ($i = 1; $i <= rand ( 1 , 3 ); $i++) {

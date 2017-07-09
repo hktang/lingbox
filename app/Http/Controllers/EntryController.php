@@ -77,32 +77,34 @@ class EntryController extends Controller
     {
 
         $entry = Entry::findOrFail($id);
-
+       
         /* Determines of a user has voted or not */
-
         if( $request->user() ){
             
-            $vote = Vote::where([
-                
-                "entry_id" => $id, 
-                "user_id"  => $request->user()->id,
-                
-                ])->first();
+            if ( $entry->votes() ){
 
-            if( $vote ){
+                $vote = $entry->votes()
+                          ->where('user_id', $request->user()->id)
+                          ->first();
 
-              $userEntryVote = $vote->value;
+                if( $vote ){
+                
+                  $userEntryVote = $vote->value;
+               
+                }else{
+
+                    $userEntryVote = 0; 
+                
+                }
 
             }else{
-
+           
               $userEntryVote = 0; 
             
             }
-
         }else{
 
             $userEntryVote = 0; 
-
         }
 
         return view('entry.show', [
