@@ -92,53 +92,82 @@ class VoteController extends Controller
      */
     public function vote(Request $request)
     {
+        
         $this->validate($request, [
             'votable_id'      => 'required|integer',
             'votable_type'    => 'required',
             'value'           => 'in:-1,1',
-            'user_entry_value' => 'in:-1,1',
+            'original_value'  => 'in:-1,1,0',
         ]);
+
+
+        /* Determine votable type */
+
+        if ($request->votable_type == 'Entry') {
+
+            $votable_type = 'App\Entry';
+
+        }else if ($request->votable_type == 'Definition') {
+
+            $votable_type = 'App\Definition';
+
+        }
+
+        /* Save to votes table */
 
         if ( $request->user() ){
 
-            if ( $request->votable_type == 'Entry' ){
+            /* Vote for entries */
             
-                /* Vote for entries */
+            if ( $request->value == $request->original_value ){
+
+                /* Already voted */
+
+                return 0;
+
+            }else{
+
+                /* Not yet voted */
+
+                $vote = Vote::firstOrNew([
+
+                    'user_id'        => $request->user()->id,
+                    'votable_id'     => $request->votable_id,
+                    'votable_type'   => $votable_type,
+
+                ]);
+
+                $vote->user_id      = $request->user()->id;
+                $vote->value        = $request->value;
+                $vote->votable_id   = $request->votable_id;
+                $vote->votable_type = $votable_type;
+                $vote->ip_address   = $request->ip();
+                $vote->save();
+
                 
-                if ( $request->value == $request->user_entry_value ){
 
-                    /* Already voted */
+                if ( $votable_type == 'App\Definition' ){
 
-                    return "Already voted up/down";
+                    /* revise definition vote count */
 
-                }else{
+                    $definition = Definition::findOrFail($request->votable_id);
 
-                    /* Not yet voted */
+                    if ($request->value == "1") {
 
-                    $vote = Vote::firstOrNew([
+                        $count = $definition->votes->where('value', 1)->count();
+                        $definition->update(['ups', $count], ['timestamps' => false]);
 
-                        'user_id'        => $request->user()->id,
-                        'votable_id'     => $request->votable_id,
-                        'votable_type'   => 'App\Entry',
+                    }else if ($request->value == "-1"){
 
-                    ]);
+                        $count = $definition->votes->where('value', -1)->count();
+                        $definition->update(['downs', $count], ['timestamps' => false]);
 
-                    $vote->value        = $request->value;
-                    $vote->votable_id   = $request->votable_id;
-                    $vote->votable_type = 'App\Entry';
-                    $vote->ip_address   = $request->ip();
-                    $vote->save();
-
-                    return "vote ". $request->value;
-
+                    }
                 }
 
-            }else if ( $request->votable_type == 'Definition' ){
-                
-                /* Vote for definitions */ 
-                
-                    return "Voting for definitions";
-                }
+                return $request->value;
+
+            }
 
         }else{
 

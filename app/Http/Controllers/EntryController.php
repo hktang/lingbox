@@ -109,8 +109,8 @@ class EntryController extends Controller
 
         return view('entry.show', [
             
-            'entry'       => $entry,
-            'searchText'  => $id,
+            'entry'            => $entry,
+            'searchText'       => $id,
             'userEntryVote'    => $userEntryVote,
 
             ]);

@@ -41,6 +41,7 @@
                         <a  href="#" 
                            class="vote vote-up vote-entry @if($userEntryVote === 1) voted @endif" 
                               id="entry-vote-up"
+                      data-value="1"
                            title="{{__('show.upVoteEntry')}}"
                         >
                           <i class="glyphicon glyphicon-triangle-top"></i>
@@ -51,6 +52,7 @@
                         <a  href="#" 
                            class="vote vote-down vote-entry @if($userEntryVote === -1) voted @endif" 
                               id="entry-vote-down"
+                      data-value="-1"
                            title="{{__('show.downVoteEntry')}}"
                         >
                           <i class="glyphicon glyphicon-triangle-bottom"></i>
@@ -113,28 +115,35 @@
 
     $('.vote').click(function(){
 
-      var entryId        = {{ $entry->id }};
+      var votableId      = $(this).hasClass('vote-entry') ? {{ $entry->id }} : $(this).data('id');
       var voteValue      = $(this).hasClass('vote-up') ? 1 : -1 ;
-      var voteType       = $(this).hasClass('vote-entry') ? 'Entry' : 'Definition' ;
-      var userEntryValue = {{ $userEntryVote }};
+      var votableType    = $(this).hasClass('vote-entry') ? 'Entry' : 'Definition' ;
+      var originalValue  = $(this).hasClass('voted') ? $(this).data('value') : 0 ;
       var voteToken      = "{{ csrf_token() }}";
+
+
+      console.log(votableId);
+      console.log(votableType);
 
       $.ajax({
         url: "{{URL::route('vote')}}",
         type: "post",
         data: {
 
-          'votable_id'       : entryId,
-          'votable_type'     : voteType,
+          'votable_id'       : votableId,
+          'votable_type'     : votableType,
           'value'            : voteValue,
-          'user_entry_value' : userEntryValue,
+          'original_value'   : originalValue,
           '_token'           : voteToken
 
         },
 
         success: function(response){
 
+          if (response != 0) //location.reload();
+              
           console.log(response);
+
         },
 
         error: function(data){
