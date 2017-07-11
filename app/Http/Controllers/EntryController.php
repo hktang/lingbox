@@ -73,65 +73,69 @@ class EntryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $idOrText)
     {
 
-        $entry = Entry::findOrFail($id);
-       
-        /* Determines of a user has voted or not */
-        if( $request->user() ){
-            
-            if ( $entry->votes() ){
+        /* Determines if the query is for ID or text. */
+        
+        if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
 
-                $vote = $entry->votes()
-                          ->where('user_id', $request->user()->id)
-                          ->first();
-
-                if( $vote ){
-                
-                  $userEntryVote = $vote->value;
-               
-                }else{
-
-                    $userEntryVote = 0; 
-                
-                }
-
-            }else{
-           
-              $userEntryVote = 0; 
-            
-            }
+          $entry = Entry::findOrFail($idOrText);
+        
         }else{
 
+          $entry = Entry::where('text', $idOrText)->first();
+          $searchText  = $idOrText;
+
+        }
+
+        if ( $entry ){
+
+            /* Determines of a user has voted or not */
+            if( $request->user() ){
+                
+                if ( $entry->votes() ){
+
+                    $vote = $entry->votes()
+                              ->where('user_id', $request->user()->id)
+                              ->first();
+
+                    if( $vote ){
+                    
+                      $userEntryVote = $vote->value;
+                   
+                    }else{
+
+                        $userEntryVote = 0; 
+                    
+                    }
+
+                }else{
+               
+                  $userEntryVote = 0; 
+                
+                }
+            }else{
+
+                $userEntryVote = 0; 
+            }
+
+        }else {
+
             $userEntryVote = 0; 
+
         }
 
         return view('entry.show', [
             
             'entry'            => $entry,
-            'searchText'       => $id,
+            'searchText'       => $idOrText,
             'userEntryVote'    => $userEntryVote,
 
             ]);
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showByText($text)
-    {
-        return view('entry.show', [
-
-                'entry' => Entry::where('text', $text)->first(), 
-                'searchText'  => $text,
-
-                ]);
-    }
 
     /**
      * Show the form for editing the specified resource.

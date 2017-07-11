@@ -109,56 +109,58 @@
 </div>
 
 
-<script type="text/javascript">
+@if($entry)
 
-  $(document).ready(function(){
+  <script type="text/javascript">
 
-    $('.vote').click(function(){
+    $(document).ready(function(){
 
-      var votableId      = $(this).hasClass('vote-entry') ? {{ $entry->id }} : $(this).data('id');
-      var voteValue      = $(this).hasClass('vote-up') ? 1 : -1 ;
-      var votableType    = $(this).hasClass('vote-entry') ? 'Entry' : 'Definition' ;
-      var originalValue  = $(this).hasClass('voted') ? $(this).data('value') : 0 ;
-      var voteToken      = "{{ csrf_token() }}";
+      $('.vote').click(function(){
 
-      $.ajax({
-        url: "{{URL::route('vote')}}",
-        type: "post",
-        data: {
+        var votableId      = $(this).hasClass('vote-entry') ? {{ $entry->id }} : $(this).data('id');
+        var voteValue      = $(this).hasClass('vote-up') ? 1 : -1 ;
+        var votableType    = $(this).hasClass('vote-entry') ? 'Entry' : 'Definition' ;
+        var originalValue  = $(this).hasClass('voted') ? $(this).data('value') : 0 ;
+        var voteToken      = "{{ csrf_token() }}";
 
-          'votable_id'       : votableId,
-          'votable_type'     : votableType,
-          'value'            : voteValue,
-          'original_value'   : originalValue,
-          '_token'           : voteToken
+        $.ajax({
+          url: "{{URL::route('vote')}}",
+          type: "post",
+          data: {
 
-        },
+            'votable_id'       : votableId,
+            'votable_type'     : votableType,
+            'value'            : voteValue,
+            'original_value'   : originalValue,
+            '_token'           : voteToken
 
-        success: function(response){
+          },
 
-          if (response == "voted") {
+          success: function(response){
 
-            location.reload();
+            if (response == "voted") {
 
-          }else{
+              location.reload();
 
-            console.log(response);
+            }else{
+
+              console.log(response);
+
+            }
+                
+          },
+
+          error: function(response){
+
+            console.log("Vote error.");
 
           }
-              
-        },
+        });      
+      }); 
 
-        error: function(response){
-
-          console.log("Vote error.");
-
-        }
-      });      
-    }); 
-
-  });
-  
-</script>
-
+    });
+    
+  </script>
+@endif
 
 @endsection

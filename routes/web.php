@@ -13,13 +13,13 @@
 
 Auth::routes();
 
-Route::get('/', function () {return view('welcome');});
-Route::get('/add', 'EntryController@create')->name('addEntry');
-Route::get('/definition/edit/{definitionId}', 'DefinitionController@edit')->name('editDefinition');
-Route::get('/entry/{id}', 'EntryController@show')->name('showEntry');
-Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/', function () {return view('welcome');});
+ Route::get('/add', 'EntryController@create')->name('addEntry');
+ Route::get('/definition/edit/{definitionId}', 'DefinitionController@edit')->name('editDefinition');
+Route::post('/definition/update/{definitionId}', 'DefinitionController@update')->name('updateDefinition');
+ Route::get('/e/{id}', 'EntryController@show')->name('showEntry');
+ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/storeEntry', 'EntryController@store')->name('storeEntry');
 Route::post('/storeDefinition/{entryId}', 'DefinitionController@store')->name('storeDefinition');
-Route::post('/definition/update/{definitionId}', 'DefinitionController@update')->name('updateDefinition');
 Route::post('/vote', 'VoteController@vote')->name('vote');
-Route::match(['get', 'post'], '/{text}', 'EntryController@showByText')->name('showEntrybyText');
+ Route::get('/{text}', 'EntryController@show')->name('showEntrybyText');
