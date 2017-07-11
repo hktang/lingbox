@@ -12,7 +12,8 @@ return [
     'singleDesc' => ':created创建，:updated更新',
     'submitDefinition' => '提交释义',
     'suggestDefinition' => '添加释义',
+    'tagline' => '我的世代我定义！',
     'toSuggestDefinition' => '以添加释义。',
     'unknownUser' => '请叫我雷锋',
-    'upVoteEntry' => '这个词条值得推荐',
+    'upVoteEntry' => '这个词条值得推荐！',
 ];

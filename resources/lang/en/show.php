@@ -12,6 +12,7 @@ return [
     'singleDesc' => 'created at :created, updated at :updated',
     'submitDefinition' => 'Submit definition',
     'suggestDefinition' => 'Add a definition',
+    'tagline' => 'Define your generation!',
     'toSuggestDefinition' => 'to suggest a definition.',
     'unknownUser' => 'S/he who cannot be named',
     'upVoteEntry' => 'This entry is helpful. Let the world know about it.',
