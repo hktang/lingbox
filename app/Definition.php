@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Definition extends Model
 {
     
-    protected $fillable = ['text'];
+    protected $guarded = ['id', 'user_id'];
     
     /**
      * Get the entry that owns the definition.

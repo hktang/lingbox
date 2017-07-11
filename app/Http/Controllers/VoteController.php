@@ -143,7 +143,6 @@ class VoteController extends Controller
                 $vote->votable_type = $votable_type;
                 $vote->ip_address   = $request->ip();
                 $vote->save();
-
                 
 
                 if ( $votable_type == 'App\Definition' ){
@@ -152,26 +151,23 @@ class VoteController extends Controller
 
                     $definition = Definition::findOrFail($request->votable_id);
 
-                    if ($request->value == "1") {
+                    $upCount   = $definition->votes->where('value', 1)->count();
+                    $downCount = $definition->votes->where('value', -1)->count();
+                   
+                    $definition->timestamps = false;
+                    $definition->ups        = $upCount;
+                    $definition->downs      = $downCount;
+                    $definition->save();
 
-                        $count = $definition->votes->where('value', 1)->count();
-                        $definition->update(['ups', $count], ['timestamps' => false]);
-
-                    }else if ($request->value == "-1"){
-
-                        $count = $definition->votes->where('value', -1)->count();
-                        $definition->update(['downs', $count], ['timestamps' => false]);
-
-                    }
                 }
 
-                return $request->value;
+                return "voted";
 
             }
 
         }else{
 
-            return "?";
+            return "Not logged in.";
         }
 
     }

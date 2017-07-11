@@ -121,10 +121,6 @@
       var originalValue  = $(this).hasClass('voted') ? $(this).data('value') : 0 ;
       var voteToken      = "{{ csrf_token() }}";
 
-
-      console.log(votableId);
-      console.log(votableType);
-
       $.ajax({
         url: "{{URL::route('vote')}}",
         type: "post",
@@ -140,15 +136,21 @@
 
         success: function(response){
 
-          if (response != 0) //location.reload();
-              
-          console.log(response);
+          if (response == "voted") {
 
+            location.reload();
+
+          }else{
+
+            console.log(response);
+
+          }
+              
         },
 
-        error: function(data){
+        error: function(response){
 
-          console.log(data.responseText);
+          console.log("Vote error.");
 
         }
       });      
