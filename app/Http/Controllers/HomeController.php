@@ -21,8 +21,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+
+        $userEntries = $request->user()->entries
+                         ->sortByDesc('created_at')->take(5);
+
+        return view('home', [
+
+                'userEntries' => $userEntries,
+
+            ]);
     }
 }

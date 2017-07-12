@@ -4,6 +4,7 @@ return [
     'login' => '登录',
     'logout' => '退出',
     'email' => '电子邮件',
+    'myHome' => '我的页面',
     'password' => '密码',
     'remember' => '保持登录状态',
     'forgot' => '忘记密码？',
