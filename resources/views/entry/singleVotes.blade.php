@@ -23,7 +23,21 @@
   <a href="#" class="vote vote-up @if($userDefinitionVoteValue == 1) voted @endif" data-id="{{$definition->id}}" data-value="1">
 
 @else
+
+  @php
+
+   $definitionVote = $definition->votes()
+                       ->where('ip_address', $requestIp)
+                       ->first();
+
+   if( $definitionVote ){
+
+      $userDefinitionVoteValue = $definitionVote->value;
+
+   }
   
+  @endphp  
+
   <a href="#" class="vote vote-up @if($userDefinitionVoteValue == 1) voted @endif" data-id="{{$definition->id}}" data-value="1">
 
 @endif

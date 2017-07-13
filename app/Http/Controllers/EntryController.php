@@ -90,10 +90,11 @@ class EntryController extends Controller
         }
 
         if ( $entry ){
-
-            /* Determines of a user has voted or not */
+            
             if( $request->user() ){
-                
+              
+            /* Determines of a user has voted or not */
+            
                 if ( $entry->votes() ){
 
                     $vote = $entry->votes()
@@ -116,8 +117,31 @@ class EntryController extends Controller
                 
                 }
             }else{
+              
+                /* Determines of a non-user has voted or not */
 
-                $userEntryVote = 0; 
+                if ( $entry->votes() ){
+
+                    $vote = $entry->votes()
+                              ->where('ip_address', $request->ip())
+                              ->first();
+
+                    if( $vote ){
+                    
+                      $userEntryVote = $vote->value;
+                   
+                    }else{
+
+                        $userEntryVote = 0; 
+                    
+                    }
+
+                }else{
+               
+                  $userEntryVote = 0; 
+                
+                }
+                
             }
 
         }else {
@@ -131,6 +155,7 @@ class EntryController extends Controller
             'entry'            => $entry,
             'searchText'       => $idOrText,
             'userEntryVote'    => $userEntryVote,
+            'requestIp'        => $request->ip(),
 
             ]);
 

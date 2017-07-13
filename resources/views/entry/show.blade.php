@@ -121,6 +121,7 @@
         var voteValue      = $(this).hasClass('vote-up') ? 1 : -1 ;
         var votableType    = $(this).hasClass('vote-entry') ? 'Entry' : 'Definition' ;
         var originalValue  = $(this).hasClass('voted') ? $(this).data('value') : 0 ;
+        var ipAddress      = "{{ $requestIp }}";
         var voteToken      = "{{ csrf_token() }}";
 
         $.ajax({
@@ -132,6 +133,7 @@
             'votable_type'     : votableType,
             'value'            : voteValue,
             'original_value'   : originalValue,
+            'ip_address'       : ipAddress,
             '_token'           : voteToken
 
           },

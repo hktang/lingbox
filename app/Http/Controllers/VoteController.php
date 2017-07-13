@@ -98,6 +98,7 @@ class VoteController extends Controller
             'votable_type'    => 'required',
             'value'           => 'in:-1,1',
             'original_value'  => 'in:-1,1,0',
+            'ip_address'      => 'ip',
         ]);
 
 
@@ -117,6 +118,8 @@ class VoteController extends Controller
 
         if ( $request->user() ){
 
+            /* User logged in */
+            
             /* Vote for entries */
             
             if ( $request->value == $request->original_value ){
@@ -167,7 +170,54 @@ class VoteController extends Controller
 
         }else{
 
-            return "Not logged in.";
+            /* User not logged in */
+            
+            /* Vote for entries */
+            
+            if ( $request->value == $request->original_value ){
+
+                /* Already voted */
+
+                return 0;
+
+            }else{
+
+                /* Not yet voted */
+
+                $vote = Vote::firstOrNew([
+
+                    'ip_address'     => $request->ip_address,
+                    'votable_id'     => $request->votable_id,
+                    'votable_type'   => $votable_type,
+
+                ]);
+
+                $vote->value        = $request->value;
+                $vote->votable_id   = $request->votable_id;
+                $vote->votable_type = $votable_type;
+                $vote->ip_address   = $request->ip();
+                $vote->save();
+                
+
+                if ( $votable_type == 'App\Definition' ){
+
+                    /* revise definition vote count */
+
+                    $definition = Definition::findOrFail($request->votable_id);
+
+                    $upCount   = $definition->votes->where('value', 1)->count();
+                    $downCount = $definition->votes->where('value', -1)->count();
+                   
+                    $definition->timestamps = false;
+                    $definition->ups        = $upCount;
+                    $definition->downs      = $downCount;
+                    $definition->save();
+
+                }
+
+                return "voted";
+
+            }
         }
 
     }
