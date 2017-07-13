@@ -23,6 +23,6 @@ $factory->define(App\Definition::class, function () use ($faker) {
                       '的' . $faker->lastName. $faker->firstNameMale . 
                       "。例：" . $faker->text,
         'user_id'  => $faker->unique()->randomNumber(2, false),
-        'entry_id'  => $faker->unique()->randomNumber(2, false),
+        'entry_id'  => $faker->unique()->randomNumber(1, false),
     ];
 });

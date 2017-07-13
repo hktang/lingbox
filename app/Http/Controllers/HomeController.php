@@ -26,10 +26,14 @@ class HomeController extends Controller
 
         $userEntries = $request->user()->entries
                          ->sortByDesc('created_at')->take(5);
+                         
+        $userDefinitions = $request->user()->definitions
+                             ->sortByDesc('created_at')->take(5);
 
         return view('home', [
 
-                'userEntries' => $userEntries,
+                'userEntries'     => $userEntries,
+                'userDefinitions' => $userDefinitions,
 
             ]);
     }

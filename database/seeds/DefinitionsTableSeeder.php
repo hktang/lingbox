@@ -11,10 +11,10 @@ class DefinitionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Definition::class, 50)
+        factory(App\Definition::class, 10)
           ->create()
           ->each(function ($d) {
-            for ($i = 1; $i <= rand ( 1 , 50 ); $i++) {
+            for ($i = 1; $i <= rand ( 1 , 10 ); $i++) {
               $d->votes()
                 ->save( factory(App\Vote::class)
                 ->make([
