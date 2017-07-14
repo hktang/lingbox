@@ -9,6 +9,7 @@ return [
     'or' => 'or',
     'pageTitlePrefix' => 'Define',
     'pageTitleSuffix' => 'meaning in Chinese',
+    'singleDesc' => 'Siblings',
     'singleDesc' => 'created at :created, updated at :updated',
     'submitDefinition' => 'Submit definition',
     'suggestDefinition' => 'Add a definition',

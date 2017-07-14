@@ -13,7 +13,7 @@
 
 Auth::routes();
 
- Route::get('/', function () {return view('welcome');});
+ Route::get('/', 'HomeController@welcome')->name('welcome');
  Route::get('/add/{text?}', 'EntryController@create')->name('addEntry');
  Route::get('/definition/edit/{definitionId}', 'DefinitionController@edit')->name('editDefinition');
 Route::post('/definition/update/{definitionId}', 'DefinitionController@update')->name('updateDefinition');

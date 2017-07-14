@@ -16,7 +16,7 @@
 
     <div class="row">
     
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-7 col-md-offset-2">
       
         @include('layouts.flash')
         
@@ -26,7 +26,7 @@
     
     <div class="row">
     
-      <div class="col-md-8 col-md-offset-2" id="search-xs">
+      <div class="col-md-7 col-md-offset-2" id="search-xs">
         <div class="panel panel-default">
           <div class="panel-heading">
             @include('searchBar')
@@ -38,7 +38,7 @@
     
     <div class="row">
     
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-7 col-md-offset-1">
 
             <div class="panel panel-default">
             
@@ -117,6 +117,25 @@
                 @endif
             </div>
         </div>
+        
+        <div class="col-md-3">
+          <div class="row">
+            
+            @if($entry)
+            <div class="col-md-12">
+              @include('entry.showSiblings')
+            </div>
+            @endif
+            
+            @if(!Auth::user())
+              <div class="col-md-12">
+                @include('entry.showLogin')
+              </div>
+            @endif  
+            
+          </div>
+        </div>
+        
     </div>
 </div>
 

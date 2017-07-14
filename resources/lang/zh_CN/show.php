@@ -9,6 +9,7 @@ return [
     'or' => '或',
     'pageTitlePrefix' => '热词',
     'pageTitleSuffix' => '是什么意思',
+    'siblings' => '相近词条',
     'singleDesc' => ':created创建，:updated更新',
     'submitDefinition' => '提交释义',
     'suggestDefinition' => '添加释义',

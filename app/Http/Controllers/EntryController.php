@@ -77,7 +77,8 @@ class EntryController extends Controller
      */
     public function show(Request $request, $idOrText = null)
     {
-     
+        $userEntryVote = 0; 
+        
         if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
         
         /* The query is for an ID. */
@@ -87,15 +88,15 @@ class EntryController extends Controller
         
         }else if ($idOrText == null){
         
-        /* The query is from the searchbar. */
+          /* The query is from the searchbar. */
         
           $entry       = Entry::where('text', $request->input('term'))->first();
           $searchText  = $request->input('term');
           
         }else{
         
-        /* The query is for text. */
-        
+          /* The query is for text. */
+          
           $entry = Entry::where('text', $idOrText)->first();
           $searchText  = $idOrText;
 
@@ -105,7 +106,7 @@ class EntryController extends Controller
             
             if( $request->user() ){
               
-            /* Determines of a user has voted or not */
+                /* Determines of a user has voted or not */
             
                 if ( $entry->votes() ){
 
@@ -114,19 +115,8 @@ class EntryController extends Controller
                               ->first();
 
                     if( $vote ){
-                    
                       $userEntryVote = $vote->value;
-                   
-                    }else{
-
-                        $userEntryVote = 0; 
-                    
                     }
-
-                }else{
-               
-                  $userEntryVote = 0; 
-                
                 }
             }else{
               
@@ -139,28 +129,15 @@ class EntryController extends Controller
                               ->first();
 
                     if( $vote ){
-                    
                       $userEntryVote = $vote->value;
-                   
-                    }else{
-
-                        $userEntryVote = 0; 
-                    
                     }
-
-                }else{
-               
-                  $userEntryVote = 0; 
-                
                 }
-                
             }
-
-        }else {
-
-            $userEntryVote = 0; 
-
         }
+        
+        $siblings = Entry::orderBy("text")
+                     ->limit(5)
+                     ->get();
 
         return view('entry.show', [
             
@@ -168,11 +145,11 @@ class EntryController extends Controller
             'searchText'       => $searchText,
             'userEntryVote'    => $userEntryVote,
             'requestIp'        => $request->ip(),
+            'siblings'         => $siblings,
 
             ]);
 
     }
-
 
     /**
      * Show the form for editing the specified resource.

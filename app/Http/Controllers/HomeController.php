@@ -34,12 +34,26 @@ class HomeController extends Controller
         $lonelyEntries = Entry::doesntHave('definitions')
                               ->orderByDesc('ups')
                               ->limit(5)->get();
+        
+        $randomEntry = Entry::inRandomOrder()->first();
 
         return view('home', [
 
                 'userEntries'      => $userEntries,
                 'userDefinitions'  => $userDefinitions,
                 'lonelyEntries'    => $lonelyEntries,
+
+            ]);
+    }
+
+    public function welcome(Request $request)
+    {
+      
+        $randomEntry = Entry::inRandomOrder()->first();
+
+        return view('welcome', [
+
+                'randomEntry'      => $randomEntry,
 
             ]);
     }
