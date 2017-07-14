@@ -32,9 +32,14 @@
                         </div>
                     @endif
                     
+                    @if(! Auth::user() )
+                      <h3>{{__('add.headsupTitle')}}</h3>
+                      <p>{{__('add.headsupText')}}</p>
+                    @endif
+                    
                     <label for='text'>{{__('add.formEntry')}}</label> 
                     
-                    {{ Form::text( 'text' ) }} 
+                    {{ Form::text( 'text' , $text ) }} 
                     {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
                     
                     <input type="submit" value="{{__('add.formSubmit')}}">

@@ -94,7 +94,7 @@
 
                     <div class="panel-body">
                     
-                        <a href="{{URL::route('addEntry')}}">
+                        <a href="{{URL::route('addEntry', ['text' => $searchText ])}}">
                         
                           {{__('show.createEntry', ['searchText' => $searchText])}}
                           

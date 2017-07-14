@@ -8,4 +8,6 @@ return [
     'myDefinitions' => 'My recent definitions',
     'welcomeMessage' => 'You are logged in!',
     'noEntry' => 'You have no entry yet.',
+    'search' => 'Search for a term.',
+    'searchTitle' => 'Search Lingbox',
 ];

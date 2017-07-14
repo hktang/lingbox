@@ -37,8 +37,8 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                    <ul class="nav navbar-nav" style="width:40%; margin:7px; 0 0 120px;">
+                        @include('searchBar')
                     </ul>
 
                     <!-- Right Side Of Navbar -->

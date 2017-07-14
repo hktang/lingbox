@@ -25,9 +25,11 @@ class EntryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $text = null )
     {
-        return view('entry.add');
+        return view('entry.add', [
+          'text' => $text
+        ]);
     }
 
     /**
@@ -73,17 +75,27 @@ class EntryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $idOrText)
+    public function show(Request $request, $idOrText = null)
     {
-
-        /* Determines if the query is for ID or text. */
-        
+     
         if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
-
-          $entry = Entry::findOrFail($idOrText);
         
+        /* The query is for an ID. */
+        
+          $entry = Entry::findOrFail($idOrText);
+          $searchText  = $entry->text;
+        
+        }else if ($idOrText == null){
+        
+        /* The query is from the searchbar. */
+        
+          $entry       = Entry::where('text', $request->input('term'))->first();
+          $searchText  = $request->input('term');
+          
         }else{
-
+        
+        /* The query is for text. */
+        
           $entry = Entry::where('text', $idOrText)->first();
           $searchText  = $idOrText;
 
@@ -153,7 +165,7 @@ class EntryController extends Controller
         return view('entry.show', [
             
             'entry'            => $entry,
-            'searchText'       => $idOrText,
+            'searchText'       => $searchText,
             'userEntryVote'    => $userEntryVote,
             'requestIp'        => $request->ip(),
 
