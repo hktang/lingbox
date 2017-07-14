@@ -11,6 +11,6 @@ return [
                       192.168.1.xxx. If you prefer not to show this part of 
                       your public IP address, please register or log in to 
                       continue ;-)',
-    'formEntry' => 'What phrase do you want to define? ',
+    'formEntry' => 'Create entry: ',
     'formSubmit' => 'Add',
 ];
