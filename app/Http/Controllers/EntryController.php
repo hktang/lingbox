@@ -81,17 +81,13 @@ class EntryController extends Controller
     public function show(Request $request, $idOrText = null)
     {
 
-        $userEntryVote = 0; 
+        $userEntryVote = 0;         
 
         /* check for precence of 'e/' at the start of the request uri */
-        
-        if ($idOrText == ""){
 
-          return redirect('/');
-        
-        }else if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
-        
-        /* The query is for an ID. */
+        if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
+
+          /* The query is for an ID. */
         
           $entry = Entry::findOrFail($idOrText);
           $searchText  = $entry->text;
@@ -99,6 +95,10 @@ class EntryController extends Controller
         }else if ($idOrText == null){
         
           /* The query is from the searchbar. */
+
+          if ($request->input('term') == "") {
+              return redirect('/');
+          }
         
           $entry       = Entry::where('text', $request->input('term'))->first();
           $searchText  = $request->input('term');
@@ -144,15 +144,22 @@ class EntryController extends Controller
             }
         }
         
-        $eSiblings = Entry::where("pinyin", "<", $entry->pinyin )
-                           ->orderByDesc('pinyin')
-                           ->limit(2)
-                           ->get()->reverse();
+        if ($entry) {
 
-        $ySiblings = Entry::where("pinyin", ">", $entry->pinyin )
-                           ->orderBy('pinyin')
-                           ->limit(2)
-                           ->get();
+            $eSiblings = Entry::where("pinyin", "<", $entry->pinyin )
+                               ->orderByDesc('pinyin')
+                               ->limit(2)
+                               ->get()->reverse();
+
+            $ySiblings = Entry::where("pinyin", ">", $entry->pinyin )
+                               ->orderBy('pinyin')
+                               ->limit(2)
+                               ->get();
+        }else{
+            $eSiblings = null;
+            $ySiblings = null;
+        }
+
 
         return view('entry.show', [
             
