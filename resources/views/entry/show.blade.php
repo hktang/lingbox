@@ -131,17 +131,17 @@
         <div class="col-md-3">
           <div class="row">
             
-            @if($entry)
-            <div class="col-md-12">
-              @include('entry.showSiblings')
-            </div>
-            @endif
-            
             @if(!Auth::user())
               <div class="col-md-12">
                 @include('entry.showLogin')
               </div>
             @endif  
+
+            @if($entry)
+            <div class="col-md-12">
+              @include('entry.showSiblings')
+            </div>
+            @endif
             
           </div>
         </div>
