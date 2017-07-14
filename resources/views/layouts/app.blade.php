@@ -17,7 +17,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="min-height:76px; padding-top:12px;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -35,11 +35,12 @@
                         <span class="hidden-xs">{{__('show.tagline')}}</span>
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav hidden-sm hidden-xs" style="width:40%; margin:7px; 0 0 120px;">
+                    <ul class="nav navbar-nav hidden-xs" style="width:40%; margin:8px 0 0 20px;">
+                    @if(! \Request::is('/'))
                         @include('searchBar')
+                    @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,7 +79,11 @@
                 </div>
             </div>
         </nav>
-
+        
+        @if( \Request::is('/'))
+          @include('layouts.jumbotron')
+        @endif
+        
         @yield('content')
     </div>
 

@@ -11,12 +11,54 @@
 
 /* Colors */
 
+$lingboxGreen1 : #76f9e2;
+$lingboxGreen2 : #bffcf2;
+
 $accent      : #f4645f;
+
 $lingboxGray : #ccc;
+
+
+@media screen and (max-device-width: 767px){
+
+  #search-xs{
+    display:block;
+  }
+  
+}
+
+@media screen and (min-width: 768px){
+
+  #search-xs{
+    display:none;
+  }
+  
+}
 
 
 /* Site specific */
 
+/* Root */
+
+.jumbotron {
+  height:240px;
+  padding-top:100px;
+  background:linear-gradient(160deg, $lingboxGreen1 0%, $lingboxGreen2 51%, $lingboxGreen1 75%)
+}
+
+#home-jumbo-search button{
+  height:48px;
+}
+
+#home-jumbo-search button i{
+  font-size:1.4em;
+  top:4px;
+}
+
+#home-jumbo-search input{
+  height:48px;
+  font-size:1.4em;
+}
 
 /* Entry.show */
 

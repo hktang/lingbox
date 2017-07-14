@@ -10,6 +10,6 @@ return [
     'myDefinitions' => '我最近添加的释义',
     'welcomeMessage' => '已登录！',
     'noEntry' => '似乎还没有添加过呢。',
-    'search' => '搜索热词',
+    'search' => '搜索 Lingbox',
     'searchTitle' => '搜索 Lingbox',
 ];

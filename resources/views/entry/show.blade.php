@@ -26,6 +26,18 @@
     
     <div class="row">
     
+      <div class="col-md-8 col-md-offset-2" id="search-xs">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            @include('searchBar')
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="row">
+    
         <div class="col-md-8 col-md-offset-2">
 
             <div class="panel panel-default">
