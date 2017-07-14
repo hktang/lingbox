@@ -1,8 +1,10 @@
 <?php
 
 return [
+    'allDefined' => 'No more lonely entries!',
     'createEntry' => 'Create an entry',
     'createFristEntry' => 'Create your first entry now',
+    'killZeroDefinition' => 'Can you define these entries?',
     'dashboard' => 'Dashboard: my Lingbox',
     'myContributions' => 'My recent entries',
     'myDefinitions' => 'My recent definitions',

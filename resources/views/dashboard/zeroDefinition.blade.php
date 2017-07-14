@@ -6,7 +6,7 @@
       <a href="{{ route('showEntry', $lonelyEntry->id) }}">
         {{$lonelyEntry->text}}
       </a>
-      ({{ $lonelyEntry->ups }})
+      <span class="label label-success"><i class="glyphicon glyphicon-thumbs-up"></i> {{ $lonelyEntry->ups }}</span>
     </p>
 
   @endforeach

@@ -11,6 +11,8 @@
 
                   @include("dashboard.userEntries")
                   
+                  <hr/>
+                  
                   @include("dashboard.userDefinitions")
 
                 </div>

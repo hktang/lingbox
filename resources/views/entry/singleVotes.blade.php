@@ -41,13 +41,13 @@
   <a href="#" class="vote vote-up @if($userDefinitionVoteValue == 1) voted @endif" data-id="{{$definition->id}}" data-value="1">
 
 @endif
-    <i class="glyphicon glyphicon-triangle-top"></i>
+    <i class="glyphicon glyphicon-thumbs-up"></i>
   </a> 
 
 <span id="def-up-count-{{$definition->id}}">{{$definition->ups}}</span> | 
 
 <a href="#" class="vote vote-down @if($userDefinitionVoteValue == -1) voted @endif" data-id="{{$definition->id}}" data-value="-1">
-  <i class="glyphicon glyphicon-triangle-bottom"></i>
+  <i class="glyphicon glyphicon-thumbs-down"></i>
 </a> 
 
 <span id="def-down-count-{{$definition->id}}">{{$definition->downs}}</span> 

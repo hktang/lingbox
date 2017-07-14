@@ -154,7 +154,7 @@
 
           error: function(response){
 
-            console.log(response.responseText);
+            console.log("Vote error.");
 
           }
         });      
