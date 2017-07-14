@@ -30,7 +30,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="@if(Auth::user()){{ route('home') }}@else{{url("/")}}@endif">
                         {{ config('app.name') }} <sup>Alpha</sup> 
                         <span class="hidden-xs">{{__('show.tagline')}}</span>
                     </a>
