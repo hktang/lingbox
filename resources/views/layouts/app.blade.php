@@ -31,13 +31,14 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name') }} <sup>Alpha</sup> {{__('show.tagline')}}
+                        {{ config('app.name') }} <sup>Alpha</sup> 
+                        <span class="hidden-xs">{{__('show.tagline')}}</span>
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav" style="width:40%; margin:7px; 0 0 120px;">
+                    <ul class="nav navbar-nav hidden-sm hidden-xs" style="width:40%; margin:7px; 0 0 120px;">
                         @include('searchBar')
                     </ul>
 
