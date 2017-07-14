@@ -13,12 +13,12 @@
 
 Auth::routes();
 
- Route::get('/', 'HomeController@welcome')->name('welcome');
+ Route::get('/', 'HomeController@welcome')->name('publicHome');
  Route::get('/add/{text?}', 'EntryController@create')->name('addEntry');
  Route::get('/definition/edit/{definitionId}', 'DefinitionController@edit')->name('editDefinition');
 Route::post('/definition/update/{definitionId}', 'DefinitionController@update')->name('updateDefinition');
  Route::get('/e/{id}', 'EntryController@show')->name('showEntry');
- Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home', 'DashboardController@index')->name('home');
 Route::post('/storeEntry', 'EntryController@store')->name('storeEntry');
 Route::post('/storeDefinition/{entryId}', 'DefinitionController@store')->name('storeDefinition');
 Route::post('/vote', 'VoteController@vote')->name('vote');

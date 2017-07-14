@@ -58,7 +58,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('welcome') }}">
+                                        <a href="{{ route('publicHome') }}">
                                             {{__('login.home')}}
                                         </a>
                                     </li>
