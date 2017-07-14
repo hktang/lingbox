@@ -47,7 +47,7 @@
                           <i class="glyphicon glyphicon-triangle-top"></i>
                         </a>
 
-                        <p id="entry-count">{{ $entry->votes->where('value', 1)->count() }}</p>
+                        <p id="entry-count">{{ $entry->ups }}</p>
 
                         <a  href="#" 
                            class="vote vote-down vote-entry @if($userEntryVote === -1) voted @endif" 
@@ -154,7 +154,7 @@
 
           error: function(response){
 
-            console.log("Vote error.");
+            console.log(response.responseText);
 
           }
         });      

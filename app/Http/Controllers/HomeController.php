@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entry;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,10 +31,15 @@ class HomeController extends Controller
         $userDefinitions = $request->user()->definitions
                              ->sortByDesc('created_at')->take(5);
 
+        $lonelyEntries = Entry::doesntHave('definitions')
+                              ->orderByDesc('ups')
+                              ->limit(5)->get();
+
         return view('home', [
 
-                'userEntries'     => $userEntries,
-                'userDefinitions' => $userDefinitions,
+                'userEntries'      => $userEntries,
+                'userDefinitions'  => $userDefinitions,
+                'lonelyEntries'    => $lonelyEntries,
 
             ]);
     }

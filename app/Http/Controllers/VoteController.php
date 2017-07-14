@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vote;
 use App\Definition;
+use App\Entry;
 use Illuminate\Http\Request;
 
 class VoteController extends Controller
@@ -118,10 +119,6 @@ class VoteController extends Controller
 
         if ( $request->user() ){
 
-            /* User logged in */
-            
-            /* Vote for entries */
-            
             if ( $request->value == $request->original_value ){
 
                 /* Already voted */
@@ -132,38 +129,9 @@ class VoteController extends Controller
 
                 /* Not yet voted */
 
-                $vote = Vote::firstOrNew([
-
-                    'user_id'        => $request->user()->id,
-                    'votable_id'     => $request->votable_id,
-                    'votable_type'   => $votable_type,
-
-                ]);
-
-                $vote->user_id      = $request->user()->id;
-                $vote->value        = $request->value;
-                $vote->votable_id   = $request->votable_id;
-                $vote->votable_type = $votable_type;
-                $vote->ip_address   = $request->ip();
-                $vote->save();
-                
-
-                if ( $votable_type == 'App\Definition' ){
-
-                    /* revise definition vote count */
-
-                    $definition = Definition::findOrFail($request->votable_id);
-
-                    $upCount   = $definition->votes->where('value', 1)->count();
-                    $downCount = $definition->votes->where('value', -1)->count();
-                   
-                    $definition->timestamps = false;
-                    $definition->ups        = $upCount;
-                    $definition->downs      = $downCount;
-                    $definition->save();
-
-                }
-
+                $this->storeVote($request, $votable_type);
+                $this->storeVoteCount($request, $votable_type);
+ 
                 return "voted";
 
             }
@@ -172,8 +140,6 @@ class VoteController extends Controller
 
             /* User not logged in */
             
-            /* Vote for entries */
-            
             if ( $request->value == $request->original_value ){
 
                 /* Already voted */
@@ -184,36 +150,8 @@ class VoteController extends Controller
 
                 /* Not yet voted */
 
-                $vote = Vote::firstOrNew([
-
-                    'ip_address'     => $request->ip_address,
-                    'votable_id'     => $request->votable_id,
-                    'votable_type'   => $votable_type,
-
-                ]);
-
-                $vote->value        = $request->value;
-                $vote->votable_id   = $request->votable_id;
-                $vote->votable_type = $votable_type;
-                $vote->ip_address   = $request->ip();
-                $vote->save();
-                
-
-                if ( $votable_type == 'App\Definition' ){
-
-                    /* revise definition vote count */
-
-                    $definition = Definition::findOrFail($request->votable_id);
-
-                    $upCount   = $definition->votes->where('value', 1)->count();
-                    $downCount = $definition->votes->where('value', -1)->count();
-                   
-                    $definition->timestamps = false;
-                    $definition->ups        = $upCount;
-                    $definition->downs      = $downCount;
-                    $definition->save();
-
-                }
+                $this->storeVote($request, $votable_type);
+                $this->storeVoteCount($request, $votable_type);
 
                 return "voted";
 
@@ -222,5 +160,66 @@ class VoteController extends Controller
 
     }
 
+    private function storeVote(Request $request, $votable_type){
+      
+      $user_id = $request->user() ? $request->user()->id : null;
+      
+      if($user_id){
+        
+        /* User vote */
+        
+        $vote = Vote::firstOrNew([
 
+            'user_id'        => $request->user()->id,
+            'votable_id'     => $request->votable_id,
+            'votable_type'   => $votable_type,
+
+        ]);
+        
+      }else{
+        
+        /* Public vote */
+        
+        $vote = Vote::firstOrNew([
+
+            'ip_address'     => $request->ip_address,
+            'votable_id'     => $request->votable_id,
+            'votable_type'   => $votable_type,
+
+        ]);
+        
+      }
+      
+      $vote->user_id      = $user_id;
+      $vote->value        = $request->value;
+      $vote->votable_id   = $request->votable_id;
+      $vote->votable_type = $votable_type;
+      $vote->ip_address   = $request->ip();
+      $vote->save();
+
+    }
+    
+    private function storeVoteCount(Request $request, $votable_type){
+      
+      if( $votable_type == 'App\Definition' ){
+        
+          $votable = Definition::findOrFail($request->votable_id);
+          
+      }else if( $votable_type == 'App\Entry' ){
+        
+          $votable = Entry::findOrFail($request->votable_id);
+      
+      }
+      
+      /* revise votable vote count */
+      
+      $upCount   = $votable->votes->where('value', 1)->count();
+      $downCount = $votable->votes->where('value', -1)->count();
+     
+      $votable->timestamps = false;
+      $votable->ups        = $upCount;
+      $votable->downs      = $downCount;
+      $votable->save();
+
+    }
 }

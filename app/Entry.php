@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Entry extends Model
 {
     
-    protected $fillable   = ['text'];
+    protected $fillable = ['text', 'ups', 'downs'];
     
     /**
      * Get the definitions of the entry.
