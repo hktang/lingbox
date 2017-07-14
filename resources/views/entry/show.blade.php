@@ -10,6 +10,16 @@
 
 @endsection
 
+@section('metaDescription')
+    
+    @if($entry)
+      {{__('show.pageTitlePrefix')}} {{$entry->text}} {{__('show.pageTitleSuffix')}} - {{ config('app.name') }}
+    @else
+      {{__('show.entryNotExist', ['searchText' => $searchText])}} - 
+    @endif
+
+@endsection
+
 @section('content')
 
 <div class="container">

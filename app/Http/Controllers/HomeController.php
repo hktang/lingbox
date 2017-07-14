@@ -35,8 +35,6 @@ class HomeController extends Controller
                               ->orderByDesc('ups')
                               ->limit(5)->get();
         
-        $randomEntry = Entry::inRandomOrder()->first();
-
         return view('home', [
 
                 'userEntries'      => $userEntries,
@@ -49,7 +47,7 @@ class HomeController extends Controller
     public function welcome(Request $request)
     {
       
-        $randomEntry = Entry::inRandomOrder()->first();
+        $randomEntry = Entry::has('definitions')->inRandomOrder()->first();
 
         return view('welcome', [
 

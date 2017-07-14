@@ -18,6 +18,7 @@ class CreateEntriesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable()->index();
             $table->integer('ups')->unsigned()->default(0);
             $table->integer('downs')->unsigned()->default(0);
+            $table->string('pinyin', 45)->index();
             $table->string('ip_address', 45)->nullable()->index();
             $table->string('text')->unique();
             $table->timestamps();

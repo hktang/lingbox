@@ -7,7 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                   @if($randomEntry)
-                    <h1>{{$randomEntry->text}}</h1>
+                    <h1>
+                      <a href="{{ route('showEntry', ['id' => $randomEntry->id]) }}">
+                        {{$randomEntry->text}}
+                      </a>
+                    </h1>
                   @else
                     <h1>{{__('dashboard.randomEntry')}}</h1>
                   @endif

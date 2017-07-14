@@ -1,5 +1,10 @@
 <?php
 
+namespace App;
+
+use Faker\Factory as Faker;
+use Pinyin;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -13,11 +18,14 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$faker = Faker\Factory::create('zh_CN');
+$faker  = Faker::create('zh_CN');
 
-$factory->define(App\Entry::class, function () use ($faker) {
+$factory->define(Entry::class, function () use ($faker) {
+
+    $text = $faker->city . $faker->country;
 
     return [
-    	'text'    => $faker->city . $faker->country ,
+    	'text'    => $text,
+      'pinyin'  => Pinyin::abbr($text),
     ];
 });

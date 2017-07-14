@@ -3,9 +3,21 @@
   {{__('show.siblings')}}
   </div> 
 
-  <ul class="list-group">
-    @foreach($siblings as $sibling)
-      <li class="list-group-item">{{$sibling->text}}</li>
+  <ul class="list-group">  
+    @foreach($eSiblings as $eSibling)
+      <li class="list-group-item">
+        <a href="{{route('showEntry', ['id' => $eSibling->id])}}">
+          {{$eSibling->text}}
+        </a>
+      </li>
+    @endforeach
+      <li class="list-group-item">{{$entry->text}}</li>
+    @foreach($ySiblings as $ySibling)
+      <li class="list-group-item">
+        <a href="{{route('showEntry', ['id' => $ySibling->id])}}">
+          {{$ySibling->text}}
+        </a>
+      </li>    
     @endforeach
   </ul>
 

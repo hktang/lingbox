@@ -7,6 +7,7 @@ use App\Entry;
 use App\Vote;
 use Carbon\Carbon;
 use Lang;
+use Pinyin;
 
 class EntryController extends Controller
 {
@@ -41,7 +42,7 @@ class EntryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'text'        => 'required|max:255|unique:entries',
+            'text'        => 'required|max:32|unique:entries',
             'jackpot'     => 'max:0',
         ]);
         
@@ -49,6 +50,7 @@ class EntryController extends Controller
 
             $entryId = Entry::insertGetId([
                 'text'        => $request->input('text'),
+                'pinyin'      => Pinyin::abbr($request->input('text')),
                 'user_id'     => $request->user()->id,
                 'created_at'  => Carbon::now(),
                 'updated_at'  => Carbon::now(),
@@ -58,6 +60,7 @@ class EntryController extends Controller
 
             $entryId = Entry::insertGetId([
                 'text'        => $request->input('text'),
+                'pinyin'      => Pinyin::abbr($request->input('text')),
                 'ip_address'  => $request->ip(),
                 'created_at'  => Carbon::now(),
                 'updated_at'  => Carbon::now(),
@@ -77,9 +80,16 @@ class EntryController extends Controller
      */
     public function show(Request $request, $idOrText = null)
     {
+
         $userEntryVote = 0; 
+
+        /* check for precence of 'e/' at the start of the request uri */
         
-        if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
+        if ($idOrText == ""){
+
+          return redirect('/');
+        
+        }else if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
         
         /* The query is for an ID. */
         
@@ -94,7 +104,6 @@ class EntryController extends Controller
           $searchText  = $request->input('term');
           
         }else{
-        
           /* The query is for text. */
           
           $entry = Entry::where('text', $idOrText)->first();
@@ -135,17 +144,24 @@ class EntryController extends Controller
             }
         }
         
-        $siblings = Entry::orderBy("text")
-                     ->limit(5)
-                     ->get();
+        $eSiblings = Entry::where("pinyin", "<", $entry->pinyin )
+                           ->orderByDesc('pinyin')
+                           ->limit(2)
+                           ->get()->reverse();
+
+        $ySiblings = Entry::where("pinyin", ">", $entry->pinyin )
+                           ->orderBy('pinyin')
+                           ->limit(2)
+                           ->get();
 
         return view('entry.show', [
             
-            'entry'            => $entry,
-            'searchText'       => $searchText,
-            'userEntryVote'    => $userEntryVote,
-            'requestIp'        => $request->ip(),
-            'siblings'         => $siblings,
+            'entry'         => $entry,
+            'searchText'    => $searchText,
+            'userEntryVote' => $userEntryVote,
+            'requestIp'     => $request->ip(),
+            'eSiblings'     => $eSiblings,
+            'ySiblings'     => $ySiblings,
 
             ]);
 

@@ -8371,7 +8371,7 @@ button.close {
 .jumbotron {
   height: 240px;
   padding-top: 100px;
-  background: linear-gradient(160deg, #76f9e2 0%, #bffcf2 51%, #76f9e2 75%);
+  background: linear-gradient(160deg, #76f9e2 15%, #76f9e2 75%);
 }
 
 #home-jumbo-search button {
