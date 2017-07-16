@@ -39,7 +39,7 @@
                   </div>
 
                 <div class="panel-body">
-                  @if($randomEntry->has('definitions'))
+                  @if(($randomEntry && $randomEntry->has('definitions'))
                     @include('home.definitions')
                   @endif
                 </div>
