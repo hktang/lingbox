@@ -86,11 +86,9 @@
             </div>
         </nav>
         
-        @if( \Request::is('/'))
-          @include('layouts.jumbotron')
-        @endif
-        
         @yield('content')
+
+        @include('layouts.footer')
     </div>
 
     <!-- Scripts -->

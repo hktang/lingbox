@@ -11,8 +11,9 @@
 
 /* Colors */
 
-$lingboxGreen1 : #76f9e2;
-$lingboxGreen2 : #bffcf2;
+$lingboxTheme0 : #6fb6df;
+$lingboxTheme1 : #3097D1;
+$lingboxTheme2 : #216a94;
 
 $accent      : #f4645f;
 
@@ -38,12 +39,12 @@ $lingboxGray : #ccc;
 
 /* Site specific */
 
-/* Root */
+/* Public home */
 
 .jumbotron {
   height:240px;
   padding-top:100px;
-  background:linear-gradient(160deg, $lingboxGreen1 15%, $lingboxGreen1 75%)
+  background:linear-gradient(160deg, $lingboxTheme0 15%, $lingboxTheme1 75%)
 }
 
 #home-jumbo-search button{
@@ -60,6 +61,36 @@ $lingboxGray : #ccc;
   font-size:1.4em;
 }
 
+#h1-join-us{
+  color:$lingboxTheme1;
+  font-weight:300;
+  font-size:2.5em;
+  text-align:center;
+  line-height:4em;
+  margin-top:0;
+}
+
+#jumbo-register{
+  text-align:center;
+  margin-bottom:3em;
+}
+
+#jumbo-register .btn{
+  margin-top:-8px;
+}
+
+#jumbo-register a{
+  margin:auto 10px;
+  font-size:1.5em;
+  padding:6px 32px;
+}
+
+#shuffle{
+  float:right;
+  font-size:1em;
+  margin-right:10px
+}
+
 /* Entry.show */
 
 .vote {
@@ -73,4 +104,16 @@ $lingboxGray : #ccc;
 .entry-votes {
   text-align : center;
   font-size  : 1.5em;
+}
+
+/* Footer */
+
+footer div {
+  margin-top: 20px;
+}
+
+.footer-copyright{
+  text-align:center;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entry;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,11 +12,15 @@ class HomeController extends Controller
     public function welcome(Request $request)
     {
       
-        $randomEntry = Entry::has('definitions')->inRandomOrder()->first();
+        $entryCount   = Entry::count();
+        $randomEntry  = Entry::has('definitions')->inRandomOrder()->first();
+        $userCount    = User::count();
 
         return view('publicHome', [
 
-                'randomEntry'      => $randomEntry,
+                'entryCount'  => $entryCount,
+                'randomEntry' => $randomEntry,
+                'userCount'   => $userCount,
 
             ]);
     }

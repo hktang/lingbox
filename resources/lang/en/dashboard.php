@@ -4,6 +4,8 @@ return [
     'allDefined' => 'No more lonely entries!',
     'createEntry' => 'Create an entry',
     'createFristEntry' => 'Create your first entry now',
+    'joinUs' => 'Join :userCount users and define :entryCount 
+                 (and growing number of) entries together',
     'killZeroDefinition' => 'Lonely entries',
     'dashboard' => 'Dashboard: my Lingbox',
     'myContributions' => 'My recent entries',

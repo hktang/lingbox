@@ -1,7 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if( \Request::is('/'))
+  @include('layouts.jumbotron')
+@endif
+
 <div class="container">
+    
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1 id='h1-join-us'>{{__('dashboard.joinUs', [
+                          "userCount"  => $userCount, 
+                          "entryCount" => $entryCount, 
+              ])}}
+          </h1>
+          <div id="jumbo-register">
+            <a href='{{route('register')}}' class='btn btn-success'>{{__('register.register')}}</a>
+            <a href='{{route('login')}}' >{{__('login.login')}}</a>
+          </div>
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -11,6 +31,7 @@
                       <a href="{{ route('showEntry', ['id' => $randomEntry->id]) }}">
                         {{$randomEntry->text}}
                       </a>
+                      <a href="/" id="shuffle"><i class='glyphicon glyphicon-random'></i></a>
                     </h1>
                   @else
                     <h1>{{__('dashboard.randomEntry')}}</h1>
@@ -26,4 +47,5 @@
         </div>
     </div>
 </div>
+
 @endsection
