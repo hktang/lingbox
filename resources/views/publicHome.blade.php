@@ -16,8 +16,12 @@
               ])}}
           </h1>
           <div id="jumbo-register">
+           @if(!Auth::user())
             <a href='{{route('register')}}' class='btn btn-success'>{{__('register.register')}}</a>
             <a href='{{route('login')}}' >{{__('login.login')}}</a>
+           @else
+            <a href='{{route('home')}}' class='btn btn-success'>{{__('login.myHome')}}</a>
+           @endif
           </div>
         </div>
     </div>
