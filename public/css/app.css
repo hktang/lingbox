@@ -8393,8 +8393,8 @@ button.close {
   font-weight: 300;
   font-size: 2.5em;
   text-align: center;
-  line-height: 4em;
-  margin-top: 0;
+  line-height: 1.5em;
+  margin: 32px auto 48px auto;
 }
 
 #jumbo-register {
