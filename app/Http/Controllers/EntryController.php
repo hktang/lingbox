@@ -78,10 +78,12 @@ class EntryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $idOrText = null)
+    public function show(Request $request, $idOrText = 0)
     {
 
-        $userEntryVote = 0;         
+        $userEntryVote = 0;    
+        $entryCreator  = '';   
+        $entryRuby     = '';  
 
         /* check for precence of 'e/' at the start of the request uri */
 
@@ -165,6 +167,8 @@ class EntryController extends Controller
                 $entryCreator = $entry->ip_address;
             }
 
+            $entryRuby = Pinyin::sentence($entry->text, true);
+
         }else{
             $eSiblings = null;
             $ySiblings = null;
@@ -174,7 +178,7 @@ class EntryController extends Controller
             
             'entry'         => $entry,
             'entryCreator'  => $entryCreator,
-            'entryRuby'     => Pinyin::sentence($entry->text, true),
+            'entryRuby'     => $entryRuby,
             'searchText'    => $searchText,
             'userEntryVote' => $userEntryVote,
             'requestIp'     => $request->ip(),
