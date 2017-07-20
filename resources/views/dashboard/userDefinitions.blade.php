@@ -5,7 +5,7 @@
   @foreach( $userDefinitions as $userDefinition )
 
     <p>
-      <a href="{{ route('showEntry', $userDefinition->entry->id) }}">
+      <a href="{{ route('showEntryByText', $userDefinition->entry->text) }}">
         {{$userDefinition->entry->text}}
       </a>
       ({{$userDefinition->created_at->diffForHumans()}})

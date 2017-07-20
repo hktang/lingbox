@@ -20,6 +20,12 @@
 
 @endsection
 
+
+@section('meta')
+@if($entry)<link rel="shortlink" type="text/html" href="{{route('showEntry', $entry->id)}}">@endif
+
+@endsection
+
 @section('content')
 
 <div class="container">

@@ -6,7 +6,7 @@
   <ul class="list-group">  
     @foreach($eSiblings as $eSibling)
       <li class="list-group-item">
-        <a href="{{route('showEntry', ['id' => $eSibling->id])}}">
+        <a href="{{route('showEntryByText', $eSibling->text)}}">
           {{$eSibling->text}}
         </a>
       </li>
@@ -14,7 +14,7 @@
       <li class="list-group-item">{{$entry->text}}</li>
     @foreach($ySiblings as $ySibling)
       <li class="list-group-item">
-        <a href="{{route('showEntry', ['id' => $ySibling->id])}}">
+        <a href="{{route('showEntryByText', $ySibling->text)}}">
           {{$ySibling->text}}
         </a>
       </li>    

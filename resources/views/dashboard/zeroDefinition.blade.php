@@ -3,7 +3,7 @@
   @foreach( $lonelyEntries as $lonelyEntry )
 
     <p>
-      <a href="{{ route('showEntry', $lonelyEntry->id) }}">
+      <a href="{{ route('showEntryByText', $lonelyEntry->text) }}">
         {{$lonelyEntry->text}}
       </a>
       <span class="label label-success"><i class="glyphicon glyphicon-thumbs-up"></i> {{ $lonelyEntry->ups }}</span>

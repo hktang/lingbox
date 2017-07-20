@@ -32,7 +32,7 @@
                 <div class="panel-heading">
                   @if($randomEntry)
                     <h1>
-                      <a href="{{ route('showEntry', ['id' => $randomEntry->id]) }}">
+                      <a href="{{ route('showEntryByText', $randomEntry->text) }}">
                         {{$randomEntry->text}}
                       </a>
                       <a href="/" id="shuffle"><i class='glyphicon glyphicon-random'></i></a>

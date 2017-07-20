@@ -22,4 +22,4 @@ Route::post('/definition/update/{definitionId}', 'DefinitionController@update')-
 Route::post('/storeEntry', 'EntryController@store')->name('storeEntry');
 Route::post('/storeDefinition/{entryId}', 'DefinitionController@store')->name('storeDefinition');
 Route::post('/vote', 'VoteController@vote')->name('vote');
-Route::match(['get', 'post'], '/t/{text?}', 'EntryController@show')->name('showEntrybyText');
+Route::match(['get', 'post'], '/t/{text?}', 'EntryController@show')->name('showEntryByText');
