@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entry;
 use App\User;
 use Illuminate\Http\Request;
+use Pinyin;
 
 class HomeController extends Controller
 {
@@ -20,6 +21,7 @@ class HomeController extends Controller
 
                 'entryCount'  => $entryCount,
                 'randomEntry' => $randomEntry,
+                'entryRuby'   => Pinyin::sentence($randomEntry->text, true),
                 'userCount'   => $userCount,
 
             ]);

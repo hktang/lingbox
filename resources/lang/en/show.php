@@ -3,7 +3,7 @@
 return [
     'downVoteEntry' => 'This entry is not helpful. It does not belong here.',
     'entryCreatedAt' => 'at :created',
-    'entryCreatedBy' => 'Suggested by: ',
+    'entryCreatedBy' => 'Created by :creator :created',
     'entryNotExist' => 'Ooops. Your term :searchText is not defined yet.',
     'createEntry' => 'Suggest :searchText to the community?',
     'or' => 'or',

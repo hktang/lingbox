@@ -37,6 +37,8 @@
                       </a>
                       <a href="/" id="shuffle"><i class='glyphicon glyphicon-random'></i></a>
                     </h1>
+                    <p class='ruby'><i class="glyphicon glyphicon-bullhorn"> </i> {{$entryRuby}}</p>
+
                   @else
                     <h1>{{__('dashboard.randomEntry')}}</h1>
                   @endif

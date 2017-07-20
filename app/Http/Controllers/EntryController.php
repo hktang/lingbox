@@ -155,15 +155,26 @@ class EntryController extends Controller
                                ->orderBy('pinyin')
                                ->limit(2)
                                ->get();
+
+            if ($entry->user) {
+
+                $entryCreator = $entry->user->name;
+
+            }else{
+
+                $entryCreator = $entry->ip_address;
+            }
+
         }else{
             $eSiblings = null;
             $ySiblings = null;
         }
 
-
         return view('entry.show', [
             
             'entry'         => $entry,
+            'entryCreator'  => $entryCreator,
+            'entryRuby'     => Pinyin::sentence($entry->text, true),
             'searchText'    => $searchText,
             'userEntryVote' => $userEntryVote,
             'requestIp'     => $request->ip(),

@@ -84,15 +84,17 @@
 
                         <div class="col-xs-10 entry-body">
 
-
                           <h1 id="entry-text">{{$entry->text}}</h1>
+                          <p class='ruby'><i class="glyphicon glyphicon-bullhorn"> </i> {{$entryRuby}}</p>
                         
                           <p>
-                            {{__('show.entryCreatedBy')}} 
-                            
-                            {{$entry->user->name or __('show.unknownUser') . " ($entry->ip_address)" }}
-                            
-                            {{__('show.entryCreatedAt', ['created' => $entry->created_at->diffForHumans() ])}} 
+
+                            {{__('show.entryCreatedBy', [
+
+                                'creator' => $entryCreator, 
+                                'created' => $entry->created_at->diffForHumans()
+
+                            ])}} 
                           </p>
 
                         </div>
