@@ -14,11 +14,11 @@ class LoginTest extends DuskTestCase
     use DatabaseTransactions;
 
     function __construct() {
-      $this->userName  = 'lingboxTest3';
-      $this->email     = 'lingbox.test3@example.com';
+      $this->userName  = 'lingboxTest';
+      $this->email     = 'lingbox.test@example.com';
       $this->password  = 'secret';
-      $this->entryText = 'Entry c';
-      $this->defText   = 'Entry c definition goes here.';
+      $this->entryText = '嘛哩哄';
+      $this->defText   = 'Entry 嘛哩哄 definition goes here.';
     }
 
     public function testRegister()
@@ -31,7 +31,7 @@ class LoginTest extends DuskTestCase
                     ->type('email', $this->email)
                     ->type('password', $this->password)
                     ->type('#password-confirm', $this->password)
-                    ->click('.btn-primary')
+                    ->press('注册')
                     ->assertPathIs('/home')
                     ->clickLink($this->userName)
                     ->clickLink('退出')
@@ -48,7 +48,7 @@ class LoginTest extends DuskTestCase
             $browser->visit('/login')
                     ->type('email', $this->email)
                     ->type('password', $this->password)
-                    ->click('.btn-primary')
+                    ->press('登录')
                     ->assertPathIs('/home');
         });
     }
