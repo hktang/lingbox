@@ -37,13 +37,19 @@
                       <p>{{__('add.headsupText')}}</p>
                     @endif
                     
-                    <label for='text'>{{__('add.formEntry')}}</label> 
-                    
-                    {{ Form::text( 'text' , $text ) }} 
-                    {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
-                    
-                    <input type="submit" value="{{__('add.formSubmit')}}">
-                    
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                {{ Form::text( 'text' , $text, ["class" => "form-control"] ) }} 
+                                {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-plus-sign"></i> {{__('add.formSubmit')}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                   {!! Form::close() !!}
 
                 </div>

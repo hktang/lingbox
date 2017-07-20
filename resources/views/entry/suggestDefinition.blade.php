@@ -18,8 +18,6 @@
   
   {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
   
-  <br/>
-  
-  <input type="submit" value="{{__('show.submitDefinition')}}">
+  <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-plus-sign"></i> {{__('show.submitDefinition')}}</button>
 
 {!! Form::close() !!}

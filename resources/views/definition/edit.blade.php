@@ -29,15 +29,7 @@
                   
                     <div class="panel-heading">
                     
-                      <h1>{{$definition->entry->text}}</h1>
-                      
-                      <p>
-                      {{__('show.entryCreatedBy')}} 
-                      
-                      {{$definition->entry->user->name or __('show.unknownUser') . " ($entry->ip_address)" }}
-                      
-                      {{__('show.entryCreatedAt', ['created' => $definition->entry->created_at->diffForHumans() ])}} 
-                      </p>
+                        @include('definition.showEntryBody')
                       
                     </div>
 
@@ -61,8 +53,8 @@
                                                 
                         {{ Form::textarea( 'text', $definition->text, ['style' => 'width:100%; height:160px;']  ) }} 
                         
-                        <br />
-                        <input type="submit" value="{{__('updateDefinition.formSubmit')}}">
+                        <button class="btn btn-primary" type="submit">
+                        <i class="glyphicon glyphicon-saved"></i> {{__('updateDefinition.formSubmit')}}</button>
                         
                       {!! Form::close() !!}
                         
