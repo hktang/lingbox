@@ -50,8 +50,8 @@
                                 
                             </div>
                         @endif
-                                                
-                        {{ Form::textarea( 'text', $definition->text, ['style' => 'width:100%; height:160px;']  ) }} 
+                        
+                        <textarea style="width:100%; height:160px;" name="text" cols="50" rows="10">{{$definition->text}}</textarea>
                         
                         <button class="btn btn-primary" type="submit">
                         <i class="glyphicon glyphicon-saved"></i> {{__('updateDefinition.formSubmit')}}</button>

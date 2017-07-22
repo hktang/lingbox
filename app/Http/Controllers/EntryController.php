@@ -85,6 +85,7 @@ class EntryController extends Controller
         $entryCreator  = '';   
         $entryRuby     = '';  
 
+
         /* check for precence of 'e/' at the start of the request uri */
 
         if ( is_numeric($idOrText) && substr($request->path(), 0, 2) == 'e/' ){
@@ -112,6 +113,10 @@ class EntryController extends Controller
           $searchText  = $idOrText;
 
         }
+
+
+
+        /* Process entry votes */    
 
         if ( $entry ){
             
@@ -145,6 +150,10 @@ class EntryController extends Controller
                 }
             }
         }
+
+
+
+        /* Get "before and after" entries */
         
         if ($entry) {
 
@@ -173,6 +182,10 @@ class EntryController extends Controller
             $eSiblings = null;
             $ySiblings = null;
         }
+
+        
+
+        /* Prepare view */
 
         return view('entry.show', [
             

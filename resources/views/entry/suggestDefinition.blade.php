@@ -14,10 +14,13 @@
                     
 {!! Form::open( ['route' => [ 'storeDefinition', $entry->id ]] ) !!}
 
-  {{ Form::textarea( 'text', '', ['style' => 'width:100%; height:160px;'] ) }}
+  {{ Form::textarea( 'text', "", ['style' => 'width:100%; height:160px;'] ) }}
   
   {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
   
-  <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-plus-sign"></i> {{__('show.submitDefinition')}}</button>
+  <button class="btn btn-primary pull-right" type="submit"><i class="glyphicon glyphicon-plus-sign"></i> {{__('show.submitDefinition')}}</button>
+
+  <h4>{!!nl2br(__('addDefinition.example'))!!}</h4>
+  <p>{!!nl2br(__('addDefinition.placeholder'))!!}</p>
 
 {!! Form::close() !!}

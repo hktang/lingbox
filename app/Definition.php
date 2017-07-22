@@ -33,6 +33,9 @@ class Definition extends Model
         return $this->morphMany('App\Vote', 'votable');
     }
 
+    /**
+     * Remove empty lines
+     */
     public function getTextAttribute($value)
     {
         return preg_replace("/[\r\s*\n]{3,}/", "\n\n", $value);
