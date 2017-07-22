@@ -3,7 +3,7 @@
   
   <div class="col-xs-12 definition-body">
     <div class="definition-single">
-      <p>{!! __(TextHelper::addHashtags($definition->text)) !!}<p>
+      <p>{!! __(App\Helpers\TextHelper::addHashtags($definition->text)) !!}<p>
       <p>
 
        @include('entry.singleVotes')
