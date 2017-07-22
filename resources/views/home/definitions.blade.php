@@ -3,7 +3,7 @@
   
   <div class="col-xs-12 definition-body">
     <div class="definition-single">
-      <p>{!! nl2br(e($definition->text)) !!}<p>
+      <p>{!! __(App\Helpers\TextHelper::addHashtags($definition->text)) !!}</p>
     </div>
   </div>
   
