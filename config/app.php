@@ -180,6 +180,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Overtrue\LaravelPinyin\ServiceProvider::class,
+
+        App\Helpers\TextHelper::class,
     ],
 
     /*
@@ -212,7 +214,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
-        'TextHelper' => App\Helpers\TextHelper::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
@@ -229,6 +230,7 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
+        'TextHelper' => App\Helpers\TextHelper::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,

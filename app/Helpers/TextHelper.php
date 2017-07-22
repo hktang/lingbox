@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
-class TextHelper 
+use Illuminate\Support\ServiceProvider;
+
+class TextHelper extends ServiceProvider
 {
 
     public static function addHashtags(String $text)
