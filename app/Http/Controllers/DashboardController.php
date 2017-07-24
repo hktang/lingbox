@@ -52,7 +52,7 @@ class DashboardController extends Controller
 
           'leastPopularEntry' => Entry::orderByDesc('downs')->first(),
           'mostPopularEntry'  => Entry::orderByDesc('ups')->first(),
-          'oldestLonelyEntry' => Entry::doesntHave('definitions')->orderByDesc('created_at')->first(),
+          'oldestLonelyEntry' => Entry::doesntHave('definitions')->orderBy('created_at')->first(),
 
         ];
 
