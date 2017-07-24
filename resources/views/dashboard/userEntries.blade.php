@@ -13,9 +13,12 @@
 
   @endforeach
 
-  <p>
-    <a href="{{ route('addEntry') }}">{{__('dashboard.createEntry')}}</a>
-  </p>
+  <p>{{__('dashboard.userEntryCount', ['count' => $userStats['entries']])}}</p>
+
+  <a class='btn btn-primary' href="{{ route('addEntry') }}">
+    <i class="glyphicon glyphicon-plus-sign"></i> {{__('dashboard.createEntry')}}
+  </a>
+
 
 @else
 

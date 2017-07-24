@@ -10,14 +10,19 @@
     
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1 id='h1-join-us'>{{__('dashboard.joinUs', [
-                          "userCount"  => $userCount, 
-                          "entryCount" => $entryCount, 
-              ])}}
+          <h1 id='h1-join-us'>{{__('dashboard.siteStats', [
+
+              'numberOfDefinitions'    =>  $siteStats['definitions'],
+              'numberOfEntries'        =>  $siteStats['entries'],
+              'numberOfUsers'          =>  $siteStats['users'],
+
+            ])}}
           </h1>
           <div id="jumbo-register">
            @if(!Auth::user())
-            <a href='{{route('register')}}' class='btn btn-success'>{{__('register.register')}}</a>
+            <a href='{{route('register')}}' class='btn btn-success'>
+              {{__('register.joinUs')}}
+            </a>
             <a href='{{route('login')}}' >{{__('login.login')}}</a>
            @else
             <a href='{{route('home')}}' class='btn btn-success'>{{__('login.myHome')}}</a>

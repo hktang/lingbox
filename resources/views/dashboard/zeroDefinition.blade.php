@@ -1,20 +1,26 @@
 @if( $lonelyEntries->count() > 0 )
 
-  @foreach( $lonelyEntries as $lonelyEntry )
+  <ul class="list-group">  
 
-    <p>
-      <a href="{{ route('showEntryByText', $lonelyEntry->text) }}">
-        {{$lonelyEntry->text}}
-      </a>
-      <span class="label label-success"><i class="glyphicon glyphicon-thumbs-up"></i> {{ $lonelyEntry->ups }}</span>
-    </p>
+    @foreach( $lonelyEntries as $lonelyEntry )
 
-  @endforeach
+      <li class="list-group-item">
+        <a href="{{ route('showEntryByText', $lonelyEntry->text) }}">
+          {{$lonelyEntry->text}}
+        </a>
+        <i class="glyphicon glyphicon-thumbs-up"></i> {{ $lonelyEntry->ups }}
+      </li>
+
+    @endforeach
+
+  </ul>
 
 @else
-
-  <p>
-    {{__('dashboard.allDefined')}}
-  </p>
+  
+  <div class="panel-body">
+    <p>
+      {{__('dashboard.allDefined')}}
+    </p>
+  </div>
 
 @endif

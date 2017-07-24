@@ -13,4 +13,6 @@
 
   @endforeach
 
+  <p>{{__('dashboard.userDefinitionCount', ['count' => $userStats['definitions']])}}</p>
+
 @endif

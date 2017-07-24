@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Definition;
 use App\Entry;
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -33,14 +35,42 @@ class DashboardController extends Controller
                              ->sortByDesc('created_at')->take(5);
 
         $lonelyEntries = Entry::doesntHave('definitions')
-                              ->orderByDesc('ups')
-                              ->limit(5)->get();
+                              ->inRandomOrder()
+                              ->take(5)
+                              ->get();
+
+        $siteStats = [
+
+          'definitions'       => Definition::count(),
+          'entries'           => Entry::count(),
+          'lonelyEntries'     => Entry::doesntHave('definitions')->count(),
+          'users'             => User::count(),
+        
+        ];
+
+        $siteEntries = [
+
+          'leastPopularEntry' => Entry::orderByDesc('downs')->first(),
+          'mostPopularEntry'  => Entry::orderByDesc('ups')->first(),
+          'oldestLonelyEntry' => Entry::doesntHave('definitions')->orderByDesc('created_at')->first(),
+
+        ];
+
+        $userStats = [
+
+          'definitions'       => Definition::where('user_id', $request->user()->id)->count(),          
+          'entries'           => Entry::where('user_id', $request->user()->id)->count(),
+
+        ];
         
         return view('home', [
 
                 'userEntries'      => $userEntries,
                 'userDefinitions'  => $userDefinitions,
                 'lonelyEntries'    => $lonelyEntries,
+                'siteEntries'      => $siteEntries,
+                'siteStats'        => $siteStats,
+                'userStats'        => $userStats,
 
             ]);
     }
