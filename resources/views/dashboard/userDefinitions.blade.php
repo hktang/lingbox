@@ -5,9 +5,11 @@
   @foreach( $userDefinitions as $userDefinition )
 
     <p>
+    @if($userDefinition->entry)
       <a href="{{ route('showEntryByText', $userDefinition->entry->text) }}">
         {{$userDefinition->entry->text}}
       </a>
+    @endif
       ({{$userDefinition->created_at->diffForHumans()}})
     </p>
 
