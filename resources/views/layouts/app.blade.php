@@ -48,7 +48,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="@if(Auth::user()){{ route('home') }}@else{{url("/")}}@endif">
+                    <a class="navbar-brand" href="{{url("/")}}">
                         {{ config('app.name') }} <sup>Alpha</sup> 
                         <span class="hidden-xs">{{__('show.tagline')}}</span>
                     </a>
@@ -74,11 +74,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('publicHome') }}">
-                                            {{__('login.home')}}
-                                        </a>
-                                    </li>
                                     <li>
                                         <a href="{{ route('home') }}">
                                             {{__('login.myHome')}}
