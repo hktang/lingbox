@@ -3,7 +3,7 @@
 @section('pageTitle')
 
     @if($entry)
-      {{__('show.pageTitlePrefix')}} {{$entry->text}} {{__('show.pageTitleSuffix')}} - 
+      {{__('show.pageTitle', ['text' => $entry->text])}} - 
     @else
       {{__('show.entryNotExist', ['searchText' => $searchText])}} - 
     @endif
@@ -13,7 +13,7 @@
 @section('metaDescription')
     
     @if($entry)
-      {{__('show.pageTitlePrefix')}} {{$entry->text}} {{__('show.pageTitleSuffix')}} - {{ config('app.name') }}
+      {{__('show.pageDescription', ['text' => $entry->text])}}
     @else
       {{__('show.entryNotExist', ['searchText' => $searchText])}} - 
     @endif
