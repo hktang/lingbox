@@ -43,7 +43,7 @@
     <div class="row">
     
       <div class="col-md-7 col-md-offset-2" id="search-xs">
-        <div class="panel panel-default">
+        <div class="panel panel-ultralight">
           <div class="panel-heading">
             @include('searchBar')
           </div>
@@ -56,35 +56,35 @@
     
         <div class="col-md-7 col-md-offset-1">
 
-            <div class="panel panel-default">
-            
+            <div class="panel panel-default panel-ultralight">
+              <dl id="entry-dl" lang="zh">             
                 @if($entry)
                   
-                    <div class="panel-heading">
+                    <div class="panel-heading" id="entry-heading">
                     
                       <div class="row">
-                      
-                        <div class="col-xs-2 entry-votes">
+                    
+                        <div class="col-xs-2" id="entry-votes">
 
-                        <a  href="#" 
-                           class="vote vote-up vote-entry @if($userEntryVote === 1) voted @endif" 
-                              id="entry-vote-up"
-                      data-value="1"
-                           title="{{__('show.upVoteEntry')}}"
-                        >
-                          <i class="glyphicon glyphicon-triangle-top"></i>
-                        </a>
+                          <a  href="#" 
+                             class="vote vote-up vote-entry @if($userEntryVote === 1) voted @endif" 
+                                id="entry-vote-up"
+                        data-value="1"
+                             title="{{__('show.upVoteEntry')}}"
+                          >
+                            <i class="glyphicon glyphicon-triangle-top"></i>
+                          </a>
 
-                        <p id="entry-count">{{ $entry->ups }}</p>
+                          <p id="entry-count">{{ $entry->ups }}</p>
 
-                        <a  href="#" 
-                           class="vote vote-down vote-entry @if($userEntryVote === -1) voted @endif" 
-                              id="entry-vote-down"
-                      data-value="-1"
-                           title="{{__('show.downVoteEntry')}}"
-                        >
-                          <i class="glyphicon glyphicon-triangle-bottom"></i>
-                        </a>
+                          <a  href="#" 
+                             class="vote vote-down vote-entry @if($userEntryVote === -1) voted @endif" 
+                                id="entry-vote-down"
+                        data-value="-1"
+                             title="{{__('show.downVoteEntry')}}"
+                          >
+                            <i class="glyphicon glyphicon-triangle-bottom"></i>
+                          </a>
                         
                         </div>
 
@@ -93,16 +93,17 @@
                           @include('entry.showEntryBody')
 
                         </div>
+
                       </div>
                       
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body" id="entry-definitions-body">
                     
                         @include('entry.showSingle')
                         
                     </div>
-                    
+
                 @else
                   
                     <div class="panel-heading">
@@ -111,7 +112,7 @@
                       
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body" id="entry-definitions-body">
                     
                         <a href="{{URL::route('addEntry', ['text' => $searchText ])}}">
                         
@@ -122,6 +123,7 @@
                     </div>
                     
                 @endif
+ </dl> 
             </div>
         </div>
         

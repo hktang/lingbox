@@ -1,4 +1,4 @@
-<h1 id="entry-text">{{$definition->entry->text}}</h1>
+<dt lang="zh"><h1 id="entry-text">{{$definition->entry->text}}</h1></dt>
 
 <p>
 

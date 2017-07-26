@@ -3,21 +3,29 @@
   
   <div class="col-xs-12 definition-body">
     <div class="definition-single">
-      <p>{!! __(App\Helpers\TextHelper::addHashtags($definition->text)) !!}<p>
-      <p>
+      
+      @if(isset($definitionLang))
+        <dd lang="{{ $definitionLang }}">
+      @else
+        <dd lang="zh">
+      @endif
+          <p>{!! __(App\Helpers\TextHelper::addHashtags($definition->text)) !!}</p>
+        </dd>
 
        @include('entry.singleVotes')
 
-       | 
+       <span class="definition-meta-user definition-meta">
+          <i class="glyphicon glyphicon-user"></i> {{$definition->user->name or __('show.unknownUser')}} 
+       </span>
 
-       {{$definition->user->name or __('show.unknownUser')}}
+       <span class="definition-meta-dates definition-meta">
+         <i class="glyphicon glyphicon-calendar"></i> {{__('show.singleDesc', [
 
-       {{__('show.singleDesc', [
+           'created' => $definition->created_at->diffForHumans(),
+           'updated' => $definition->updated_at->diffForHumans(),
 
-         'created' => $definition->created_at->diffForHumans(),
-         'updated' => $definition->updated_at->diffForHumans(),
-
-       ])}}
+         ])}}
+       </span>
        
        @can('update', $definition)
        
@@ -27,9 +35,7 @@
     </div>
   </div>
   
-</div>  
-  
-<hr />
+</div>
 
 @endforeach
 

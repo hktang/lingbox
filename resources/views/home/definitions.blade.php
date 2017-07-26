@@ -3,7 +3,13 @@
   
   <div class="col-xs-12 definition-body">
     <div class="definition-single">
-      <p>{!! __(App\Helpers\TextHelper::addHashtags($definition->text)) !!}</p>
+      @if(isset($definitionLang))
+        <dd lang="{{ $definitionLang }}">
+      @else
+        <dd lang="zh">
+      @endif
+           <p>{!! __(App\Helpers\TextHelper::addHashtags($definition->text)) !!}</p>
+        </dd>
     </div>
   </div>
   

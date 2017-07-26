@@ -33,17 +33,22 @@
     
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="panel panel-default panel-ultralight">
+              <dl id="entry-dl" lang="zh">
                 <div class="panel-heading">
                   @if($randomEntry)
-                    <h1>
-                      <a href="{{ route('showEntryByText', $randomEntry->text) }}">
-                        {{$randomEntry->text}}
-                      </a>
-                      <a href="/" id="shuffle"><i class='glyphicon glyphicon-random'></i></a>
-                    </h1>
-                    <p class='ruby'><i class="glyphicon glyphicon-bullhorn"> </i> {{$entryRuby}}</p>
-
+                     <div id="home-feature-entry-text">
+                      <h1>
+                        <dt lang="zh">
+                          <a href="{{ route('showEntryByText', $randomEntry->text) }}">
+                            {{$randomEntry->text}}
+                          </a>
+                          <a href="/" id="shuffle"><i class='glyphicon glyphicon-random'></i></a>
+                        </dt>
+                      </h1>
+                    
+                      <p class='ruby'><i class="glyphicon glyphicon-bullhorn"> </i> {{$entryRuby}}</p>
+                      </div>
                   @else
                     <h1>{{__('dashboard.randomEntry')}}</h1>
                   @endif
@@ -54,6 +59,7 @@
                     @include('home.definitions')
                   @endif
                 </div>
+              </dl>
             </div>
         </div>
     </div>

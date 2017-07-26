@@ -1,3 +1,4 @@
+/*----------------- Prelude -----------------*/
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
@@ -9,15 +10,20 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 
-/* Colors */
+/*----------------- Colors -----------------*/
+
+
+$accent        : #f4645f;
 
 $lingboxTheme0 : #6fb6df;
 $lingboxTheme1 : #3097D1;
 $lingboxTheme2 : #216a94;
 
-$accent      : #f4645f;
+$lingboxGray        : #ccc;
+$lingboxUltraGray   : #f6f6f6;
 
-$lingboxGray : #ccc;
+
+/*----------------- For mobile screen -----------------*/
 
 
 @media screen and (max-device-width: 767px){
@@ -36,15 +42,25 @@ $lingboxGray : #ccc;
   
 }
 
+/*----------------- Generic -----------------*/
 
-/* Site specific */
+.panel-ultralight > .panel-heading {
+  background-color:$lingboxUltraGray;
+}
 
-/* Public home */
+/*----------------- Public home -----------------*/
 
-.jumbotron {
-  height:240px;
-  padding-top:100px;
-  background:linear-gradient(160deg, $lingboxTheme0 15%, $lingboxTheme1 75%)
+#h1-join-us{
+  color:$lingboxTheme1;
+  font-weight:300;
+  font-size:2.5em;
+  text-align:center;
+  line-height:1.5;
+  margin:32px auto 48px auto;
+}
+
+#home-feature-entry-text{
+  padding-left:12px;
 }
 
 #home-jumbo-search button{
@@ -61,13 +77,10 @@ $lingboxGray : #ccc;
   font-size:1.4em;
 }
 
-#h1-join-us{
-  color:$lingboxTheme1;
-  font-weight:300;
-  font-size:2.5em;
-  text-align:center;
-  line-height:1.5em;
-  margin:32px auto 48px auto;
+.jumbotron {
+  height:240px;
+  padding-top:100px;
+  background:linear-gradient(160deg, $lingboxTheme0 15%, $lingboxTheme1 75%)
 }
 
 #jumbo-register{
@@ -91,7 +104,58 @@ $lingboxGray : #ccc;
   margin-right:10px
 }
 
-/* Entry.show */
+
+/*----------------- Entry.show  -----------------*/
+
+.definition-body{
+  border-top:1px solid $lingboxGray;
+  margin-top:0px;
+  padding:2em;
+}
+
+.entry-meta, .definition-meta{
+  margin-right:1em;
+}
+
+dl, dt {
+  font-weight:400;
+}
+
+dd {
+  font-size:1.18em;
+}
+
+#entry-definitions-body{
+  padding-top:0;
+}
+
+#entry-dl{
+  margin-bottom:0;
+  padding-bottom:2em;
+}
+
+#entry-heading{
+  padding-bottom:0;
+}
+
+.entry-meta-ruby{
+  font-size:1.3em;
+  word-spacing:200%;
+  margin-top:19px;
+  margin-bottom:6px;
+  line-height:0.3;
+}
+
+#entry-text {
+  margin-top:0;
+  margin-bottom:0;
+}
+
+#entry-votes {
+  text-align : center;
+  font-size  : 1.5em;
+  padding-top: 0.3em;
+}
 
 .vote {
   color : $lingboxGray;
@@ -101,12 +165,9 @@ $lingboxGray : #ccc;
   color : $accent;
 }
 
-.entry-votes {
-  text-align : center;
-  font-size  : 1.5em;
-}
 
-/* Footer */
+
+/*----------------- Footer -----------------*/
 
 footer div {
   margin-top: 20px;

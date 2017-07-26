@@ -2,8 +2,6 @@
 
 return [
     'downVoteEntry' => '这个词条不值得推荐',
-    'entryCreatedAt' => '于 :created',
-    'entryCreatedBy' => ':creator于:created添加',
     'entryNotExist' => "嗷~ :searchText 还没有定义。",
     'createEntry' => '添加 :searchText 到辞典？',
     'or' => '或',

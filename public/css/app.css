@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
 
+/*----------------- Prelude -----------------*/
+
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -8350,7 +8352,9 @@ button.close {
   }
 }
 
-/* Colors */
+/*----------------- Colors -----------------*/
+
+/*----------------- For mobile screen -----------------*/
 
 @media screen and (max-device-width: 767px) {
   #search-xs {
@@ -8364,14 +8368,25 @@ button.close {
   }
 }
 
-/* Site specific */
+/*----------------- Generic -----------------*/
 
-/* Public home */
+.panel-ultralight > .panel-heading {
+  background-color: #f6f6f6;
+}
 
-.jumbotron {
-  height: 240px;
-  padding-top: 100px;
-  background: linear-gradient(160deg, #6fb6df 15%, #3097D1 75%);
+/*----------------- Public home -----------------*/
+
+#h1-join-us {
+  color: #3097D1;
+  font-weight: 300;
+  font-size: 2.5em;
+  text-align: center;
+  line-height: 1.5;
+  margin: 32px auto 48px auto;
+}
+
+#home-feature-entry-text {
+  padding-left: 12px;
 }
 
 #home-jumbo-search button {
@@ -8388,13 +8403,10 @@ button.close {
   font-size: 1.4em;
 }
 
-#h1-join-us {
-  color: #3097D1;
-  font-weight: 300;
-  font-size: 2.5em;
-  text-align: center;
-  line-height: 1.5em;
-  margin: 32px auto 48px auto;
+.jumbotron {
+  height: 240px;
+  padding-top: 100px;
+  background: linear-gradient(160deg, #6fb6df 15%, #3097D1 75%);
 }
 
 #jumbo-register {
@@ -8418,7 +8430,59 @@ button.close {
   margin-right: 10px;
 }
 
-/* Entry.show */
+/*----------------- Entry.show  -----------------*/
+
+.definition-body {
+  border-top: 1px solid #ccc;
+  margin-top: 0px;
+  padding: 2em;
+}
+
+.entry-meta,
+.definition-meta {
+  margin-right: 1em;
+}
+
+dl,
+dt {
+  font-weight: 400;
+}
+
+dd {
+  font-size: 1.18em;
+}
+
+#entry-definitions-body {
+  padding-top: 0;
+}
+
+#entry-dl {
+  margin-bottom: 0;
+  padding-bottom: 2em;
+}
+
+#entry-heading {
+  padding-bottom: 0;
+}
+
+.entry-meta-ruby {
+  font-size: 1.3em;
+  word-spacing: 200%;
+  margin-top: 19px;
+  margin-bottom: 6px;
+  line-height: 0.3;
+}
+
+#entry-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#entry-votes {
+  text-align: center;
+  font-size: 1.5em;
+  padding-top: 0.3em;
+}
 
 .vote {
   color: #ccc;
@@ -8428,12 +8492,7 @@ button.close {
   color: #f4645f;
 }
 
-.entry-votes {
-  text-align: center;
-  font-size: 1.5em;
-}
-
-/* Footer */
+/*----------------- Footer -----------------*/
 
 footer div {
   margin-top: 20px;
