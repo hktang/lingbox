@@ -43,7 +43,7 @@ class publicUserTest extends DuskTestCase
             $browser->visit('/add/嘛哩嘛哩轰')
                     ->assertSee('那啥')
                     ->press('添加')
-                    ->assertSee('前添加');
+                    ->assertSee('秒前');
         });
     }
 
