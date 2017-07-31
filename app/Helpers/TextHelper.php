@@ -16,7 +16,7 @@ class TextHelper extends ServiceProvider
 
         // get tags
 
-        $findTags = preg_match_all("/(#[^\s\"\'#&<>]{1,32}?#)/U", $text, $tags);
+        $findTags = preg_match_all("/(#[^\s\"\'#&<>]{1,32}?#)/Uu", $text, $tags);
 
 
         // replace clean tags with links
