@@ -15,4 +15,5 @@ return [
     'toSuggestDefinition' => '以添加释义。',
     'unknownUser' => '请叫我雷锋',
     'upVoteEntry' => '这个词条值得推荐！',
+    'githubLink' => 'Github源代码',
 ];

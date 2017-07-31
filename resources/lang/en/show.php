@@ -15,4 +15,5 @@ return [
     'toSuggestDefinition' => 'to suggest a definition.',
     'unknownUser' => 'S/he who cannot be named',
     'upVoteEntry' => 'This entry is helpful. Let the world know about it.',
+    'githubLink' => 'Find Lingbox CN on Github',
 ];
