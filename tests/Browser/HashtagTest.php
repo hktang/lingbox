@@ -23,7 +23,7 @@ class HashtagTest extends DuskTestCase
                     ->type('password', 'letmeout')
                     ->press('登录')
                     ->visit('/e/1')
-                    ->type('text', '#么么哒#')
+                    ->type('definition-text', '#么么哒#')
                     ->press('提交释义')
                     ->clickLink('么么哒')
                     ->assertSee('还没有定义');

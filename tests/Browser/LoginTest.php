@@ -62,11 +62,11 @@ class LoginTest extends DuskTestCase
                     ->type('text', $this->entryText)
                     ->press('添加')
                     ->assertSee($this->entryText)
-                    ->type('text', $this->defText)
+                    ->type('definition-text', $this->defText)
                     ->press('提交释义')
                     ->assertSee($this->defText)
                     ->clickLink('编辑释义')
-                    ->type('text', $this->defText . '--rev')
+                    ->type('definition-text', $this->defText . '--rev')
                     ->press('编辑释义')
                     ->assertSee($this->defText . '--rev');
 
