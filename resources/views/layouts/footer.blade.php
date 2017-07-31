@@ -2,7 +2,7 @@
   
   <div lass='row'>
 
-    <div class='col-md-7 col-md-offset-1'>
+    <div class='col-md-12'>
 
       <p class="footer-copyright">
       
