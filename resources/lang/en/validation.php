@@ -100,8 +100,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'definition-text' => [
+            'required' => 'Write something...',
+            'unique' => 'Oops, there seems to be a duplicate.',
+            'max' => 'The definition should not exceed :max characters long.',
+        ],
+        'text' => [
+            'required' => 'Writer something',
+            'unique' => 'Oops, this entry is already added.',
+            'max' => 'The entry should not exceed :max characters long.',
         ],
     ],
 

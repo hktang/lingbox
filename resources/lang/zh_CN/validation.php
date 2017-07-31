@@ -100,8 +100,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'definition-text' => [
+            'required' => '注释内容不能留空呀。',
+            'unique' => '注释内容重复了，这也太巧了吧。',
+            'max' => '注释长度不能超过:max个字符。',
+        ], 
+        'text' => [
+            'required' => '条目不能留空呀。',
+            'unique' => '不巧，条目已经添加过了！',
+            'max' => '条目长度不能超过:max个字符。',
         ],
     ],
 
