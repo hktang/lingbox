@@ -14,7 +14,7 @@
                     
 {!! Form::open( ['route' => [ 'storeDefinition', $entry->id ]] ) !!}
 
-  {{ Form::textarea( 'text', "", ['style' => 'width:100%; height:160px;'] ) }}
+  <textarea style="width:100%; height:160px;" name="definition-text" cols="50" rows="10">{{old('definition-text')}}</textarea>
   
   {{ Form::text('jackpot', '', ['style' => 'display:none']) }}
   

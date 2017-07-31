@@ -1,11 +1,13 @@
-<dt lang="zh"><h1 id="entry-text">{{$definition->entry->text}}</h1></dt>
+<h1 id="entry-text"><dt lang="zh">{{$definition->entry->text}}</dt></h1>
 
 <p>
 
-  {{__('show.entryCreatedBy', [
+  <span class="entry-meta-user entry-meta">
+    <i class="glyphicon glyphicon-user"></i> {{$definition->entry->user->name}} 
+  </span>
 
-      'creator' => $definition->entry->user->name, 
-      'created' => $definition->entry->created_at->diffForHumans()
+  <span class="entry-meta-date entry-meta">
+   <i class="glyphicon glyphicon-calendar"></i> {{ $definition->entry->created_at->diffForHumans() }} 
+  </span>
 
-  ])}} 
 </p>

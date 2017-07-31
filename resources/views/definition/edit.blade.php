@@ -51,7 +51,7 @@
                             </div>
                         @endif
                         
-                        <textarea style="width:100%; height:160px;" name="text" cols="50" rows="10">{{$definition->text}}</textarea>
+                        <textarea style="width:100%; height:160px;" name="definition-text" cols="50" rows="10">{{$definition->text or old('definition-text')}}</textarea>
                         
                         <button class="btn btn-primary" type="submit">
                         <i class="glyphicon glyphicon-saved"></i> {{__('updateDefinition.formSubmit')}}</button>

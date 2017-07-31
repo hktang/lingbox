@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Entry;
 use App\Definition;
 use Illuminate\Http\Request;
 use Lang;
+use Validator;
 
 class DefinitionController extends Controller
 {
@@ -36,28 +38,39 @@ class DefinitionController extends Controller
      */
     public function store(Request $request, $entryId)
     {
-        $this->validate($request, [
-            'text'        => 'required|max:2048|unique:definitions',
-            'jackpot'     => 'max:0',
-        ]);
         
+        // Validate
+        $rules = [
+
+            'definition-text' => 'required|max:213|unique:definitions,text',
+            'jackpot'         => 'present|max:0',
+
+        ];
+
+        $this->validate($request, $rules);
+
+
+        // Add 
+
+        $entry = Entry::findOrFail($entryId);
+
         if ($request->user()) {
             
             $definition = new Definition;
             
-            $definition->text = $request->input('text');
+            $definition->text = $request->input('definition-text');
             $definition->entry_id = $entryId;
             $definition->user_id = $request->user()->id;
             $definition->save();
             
         }else{
           
-          return redirect()->route('showEntry', $entryId)
+          return redirect()->route('showEntryByText', $entry->text)
                            ->with('warning', Lang::get('addDefinition.failed'));
                          
         }
 
-        return redirect()->route('showEntry', $entryId)
+        return redirect()->route('showEntryByText', $entry->text)
                          ->with('success', Lang::get('addDefinition.added'));
     }
 
@@ -109,26 +122,26 @@ class DefinitionController extends Controller
     {
       
       $this->validate($request, [
-          'text'        => 'required|max:2048|unique:definitions',
+          'definition-text' => 'required|max:213|unique:definitions,text',
       ]);
         
       $definition = Definition::find($id);
-      $entryId    = $definition->entry_id;
+      $entryText  = $definition->entry->text;
       $user       = $request->user();
       
       if ($user->can('update', $definition)) {
         
-        $definition->text = $request->input('text');
+        $definition->text = $request->input('definition-text');
         $definition->save();
 
       }else{
           
-          return redirect()->route('showEntry', $entryId)
+          return redirect()->route('showEntryByText', $entryText)
                            ->with('warning', Lang::get('addDefinition.updateFailed'));
                          
         }
 
-        return redirect()->route('showEntry', $entryId)
+      return redirect()->route('showEntryByText', $entryText)
                          ->with('success', Lang::get('addDefinition.updated'));
       
       

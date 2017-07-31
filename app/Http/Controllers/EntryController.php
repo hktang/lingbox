@@ -67,7 +67,9 @@ class EntryController extends Controller
             ]);
         }
 
-        return redirect()->route('showEntry', $entryId)
+        $entry = Entry::findOrFail($entryId);
+
+        return redirect()->route('showEntryByText', $entry->text)
                          ->with('success', Lang::get('add.added'));
     }
 
