@@ -36,13 +36,13 @@ Route::get('sitemap', function(){
 
     // set cache key (string), duration in minutes (Carbon|Datetime|int), turn on/off (boolean)
     // by default cache is disabled
-    $sitemap->setCache('lingbox.sitemap', 60*24, true);
+    $sitemap->setCache('lingbox.sitemap', 60*24, false);
 
     // check if there is cached sitemap and build new only if is not
     if (!$sitemap->isCached())
     {
          // add item to the sitemap (url, date, priority, freq)
-         // $sitemap->add(URL::to('/'), '2012-08-25T20:10:00+02:00', '1.0', 'daily');
+         $sitemap->add(URL::to('/'), Carbon\Carbon::today(), '0.5', 'daily');
 
          // get all entries from db
          $entries = DB::table('entries')->orderBy('created_at', 'desc')->get();
@@ -50,7 +50,7 @@ Route::get('sitemap', function(){
          // add every entry to the sitemap
          foreach ($entries as $entry)
          {
-            $sitemap->add($entry->text, $entry->updated_at, 1.0, "daily");
+            $sitemap->add(route('showEntryByText', $entry->text), $entry->updated_at, 1.0, "daily");
          }
     }
 
